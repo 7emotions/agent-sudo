@@ -355,6 +355,7 @@ int main(int argc, char* argv[]) {
                 // ── Command list with its own mask ──
                 lnpro::Item<FilledCard> {
                     capro::ThemeManager { manager },
+                    capro::Level { CardLevel::HIGH },
                     capro::Layout<Col> {
                         lnpro::Margin { 0 },
                         lnpro::Item<ScrollArea> {

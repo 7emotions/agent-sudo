@@ -17,18 +17,22 @@ namespace wdpro = widget::pro;
 
 static constexpr int kCmdMaxWidth = 550;
 
-struct CardHover : QObject {
-    FilledCard* card;
-    QColor normal, hover;
-    CardHover(FilledCard* c, QColor n, QColor h)
-        : card(c), normal(n), hover(h) {}
+struct HoverBorder : QObject {
+    HoverBorder(FilledCard* c, QColor normal, QColor hover)
+        : card(c), normal_(normal), hover_(hover) {}
     bool eventFilter(QObject*, QEvent* e) override {
         if (e->type() == QEvent::Enter)
-            card->set_border_color(hover);
+            card->set_border_color(hover_);
         else if (e->type() == QEvent::Leave)
-            card->set_border_color(normal);
+            card->set_border_color(normal_);
         return false;
     }
+    void setColors(QColor normal, QColor hover) {
+        normal_ = normal; hover_ = hover;
+        card->set_border_color(normal);
+    }
+    FilledCard* card;
+    QColor normal_, hover_;
 };
 
 QWidget* buildCommandCards(const QJsonArray& items,
@@ -79,7 +83,7 @@ QWidget* buildCommandCards(const QJsonArray& items,
         auto* card = new FilledCard {
             capro::ThemeManager { *manager },
             capro::Layout<Col> {
-                lnpro::Margin { 0 },
+                lnpro::Margin { 6 },
                 lnpro::Spacing { 4 },
                 lnpro::Item<Row> { titleRow },
                 lnpro::Item<Text> {
@@ -93,13 +97,11 @@ QWidget* buildCommandCards(const QJsonArray& items,
         card->set_border_width(1);
         card->set_border_color(scheme.outline);
         card->setAttribute(Qt::WA_Hover, true);
-        auto* hover = new CardHover(card, scheme.outline, scheme.primary);
+        auto* hover = new HoverBorder(card, scheme.outline, scheme.primary);
         card->installEventFilter(hover);
         manager->append_handler(card, [hover](const ThemeManager& m) {
             auto s = m.color_scheme();
-            hover->normal = s.outline;
-            hover->hover  = s.primary;
-            hover->card->set_border_color(s.outline);
+            hover->setColors(s.outline, s.primary);
         });
 
         switches.append(sw);
