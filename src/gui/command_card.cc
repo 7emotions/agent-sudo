@@ -135,7 +135,7 @@ QWidget* buildCommandCards(const QJsonArray& items,
                 lnpro::Item<Text> {
                     text::pro::ThemeManager { *manager },
                     text::pro::WordWrap { true },
-                    text::pro::Text { "→ " + command },
+                    text::pro::Text { "> " + command },
                     wdpro::Font { commandFont },
                 },
             },
