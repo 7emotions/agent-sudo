@@ -5,6 +5,7 @@
 #include <QString>
 
 class QLabel;
+class QPushButton;
 
 /// Central icon provider for agent-sudo GUI.
 /// Stateless utility — all methods are static.
@@ -32,6 +33,13 @@ struct IconProvider {
     static auto iconLabel(const QString& name,
                           const QColor& color,
                           int size = 20) -> QLabel*;
+
+    /// Create a QPushButton with a themed Material Icon and click handler.
+    static auto iconButton(const QString& name,
+                           const QColor& color,
+                           int size,
+                           std::function<void()> onClick)
+        -> QPushButton*;
 
 private:
     static inline QFont iconFont_{};

@@ -5,6 +5,7 @@
 #include <QFontDatabase>
 #include <QLabel>
 #include <QPainter>
+#include <QPushButton>
 #include <QSvgRenderer>
 
 auto IconProvider::initFont() -> bool {
@@ -80,4 +81,20 @@ auto IconProvider::iconLabel(const QString& name,
     label->setFixedSize(size, size);
     label->setAlignment(Qt::AlignCenter);
     return label;
+}
+
+auto IconProvider::iconButton(const QString& name,
+                              const QColor& color,
+                              int size,
+                              std::function<void()> onClick)
+    -> QPushButton* {
+    auto* btn = new QPushButton;
+    btn->setIcon(QIcon(themedIcon(name, color, size)));
+    btn->setIconSize(QSize(size, size));
+    btn->setFixedSize(size + 8, size + 8);
+    btn->setFlat(true);
+    btn->setCursor(Qt::PointingHandCursor);
+    QObject::connect(btn, &QPushButton::clicked,
+                     std::move(onClick));
+    return btn;
 }
