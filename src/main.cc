@@ -202,8 +202,6 @@ int main(int argc, char* argv[]) {
                 cmdListCard->setGraphicsEffect(listEffect);
                 cmdListCard->ensurePolished();
             }
-            if (cmdScroll) cmdScroll->setAttribute(
-                Qt::WA_StyledBackground, false);
 
             updateExec();
             for (auto* s : sws)
