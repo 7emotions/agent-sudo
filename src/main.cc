@@ -479,7 +479,7 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<FilledButton> {
                         filled_button::pro::ThemeManager { manager },
                         wdpro::Bind { execB },
-                        wdpro::FixedSize { 140, 36 },
+                        wdpro::FixedSize { 170, 36 },
                         wdpro::Font {
                             QFont(material::regular::font, 14) },
                         button::pro::Text {

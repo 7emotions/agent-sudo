@@ -1,13 +1,34 @@
 #include "icon.h"
+#include <QCoreApplication>
+#include <QDir>
 #include <QFontDatabase>
 #include <QPainter>
 #include <QSvgRenderer>
 
 auto IconProvider::initFont() -> bool {
     if (fontLoaded_) return true;
-    if (!QFontDatabase::hasFamily("Material Icons"))
+    // Try the bundled TTF first, then fall back to system-installed font
+    auto appDir = QCoreApplication::applicationDirPath();
+    auto bundledPath = appDir + "/../src/gui/MaterialIcons-Regular.ttf";
+    int id = -1;
+    if (QFile::exists(bundledPath))
+        id = QFontDatabase::addApplicationFont(bundledPath);
+    if (id == -1)
+        id = QFontDatabase::addApplicationFont(
+            "/usr/share/fonts/truetype/material-design-icons-iconfont/"
+            "MaterialIcons-Regular.ttf");
+    if (id == -1 && QFontDatabase::hasFamily("Material Icons")) {
+        // System-installed but addApplicationFont failed — use directly
+        iconFont_ = QFont("Material Icons");
+        iconFont_.setStyleStrategy(QFont::PreferQuality);
+        fontLoaded_ = true;
+        return true;
+    }
+    if (id == -1)
         return false;
-    iconFont_ = QFont("Material Icons");
+    auto families = QFontDatabase::applicationFontFamilies(id);
+    if (families.isEmpty()) return false;
+    iconFont_ = QFont(families.first());
     iconFont_.setStyleStrategy(QFont::PreferQuality);
     fontLoaded_ = true;
     return true;
