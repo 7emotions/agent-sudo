@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="version" />
+  <img src="https://img.shields.io/badge/version-2.0.0-blue" alt="version" />
   <img src="https://img.shields.io/badge/platform-Linux-lightseagreen" alt="platform" />
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license" />
 </p>
@@ -74,15 +74,18 @@ agent-sudo-flush
 | 功能 | 说明 |
 |---|---|---|
 | 命令队列 | 支持逐条添加，批量审批 |
-| 审批 GUI | Qt6 C++ 原生窗口，支持主题切换和 Material Icons |
-| 主题管理 | 3 套主题预设（蓝色初音/金色丰收/森林绿）+ 亮/暗模式，300ms 渐变动画 |
-| 声音反馈 | 4 个事件触发点（打开/倒计时警告/执行/拒绝），QSettings 可自定义路径 |
-| 理由标注 | 每条命令附带人类可读的理由 |
-| 倒计时自动拒绝 | 60 秒无操作自动拒绝，避免 Agent 永久阻塞 |
-| 勾选控制 | 可以取消不需要的命令，只执行选中的 |
-| LLM 备注 | 可选的文本输入区，人类可以给 Agent 留言 |
-| 执行历史 | 所有审批记录保存在 `~/.cache/agent-sudo/history.json` |
-| 密码安全 | 密码仅通过内存传递，用完立即清零 |
+| 审批 GUI | Qt6 C++ 原生窗口，creeper-qt 声明式组件 |
+| 主题管理 | 3 套预设 + 亮/暗模式，MixerMask 展开动画 |
+| 危险检测 | 自动识别安全/警告/危险命令，卡片颜色区分 |
+| 图标系统 | Material Icons Round 图标，悬浮高亮边框 |
+| 键盘快捷键 | Esc 拒绝 / A 全选 / C 取消全选 / Enter 执行 |
+| 多语言 | 8 种语言（zh/en/ja/ko/fr/de/es/pt），JSON 驱动 |
+| 声音反馈 | 4 事件触发，QSettings 自定义音效路径 |
+| 倒计时保护 | 60 秒自动拒绝，区分超时/手动拒绝 |
+| 点击切换 | 点击卡片任意位置切换勾选状态 |
+| LLM 备注 | 可折叠文本区，人类留言给 Agent |
+| 执行历史 | `~/.cache/agent-sudo/history.json` 审计记录 |
+| 密码安全 | 内存中使用后立即清零 |
 
 ## 安装
 
