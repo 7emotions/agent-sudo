@@ -137,6 +137,7 @@ int main(int argc, char* argv[]) {
     OutlinedTextField* llmF  = nullptr;
     TextButton*        llmB  = nullptr;
     FilledButton*      execB = nullptr;
+    OutlinedCard*     cmdListCard = nullptr;
     OutlinedButton*   rejB  = nullptr;
     QVector<Switch*>   sws;
 
@@ -176,6 +177,10 @@ int main(int argc, char* argv[]) {
             QTimer::singleShot(100, [&] {
                 soundMgr.play(SoundManager::Event::Open);
             });
+
+            auto* listEffect = new QGraphicsOpacityEffect;
+            listEffect->setOpacity(0.92);
+            if (cmdListCard) cmdListCard->setGraphicsEffect(listEffect);
 
             updateExec();
             for (auto* s : sws)
@@ -355,7 +360,7 @@ int main(int argc, char* argv[]) {
                 // ── Command list with its own mask ──
                 lnpro::Item<OutlinedCard> {
                     outlined_card::pro::ThemeManager { manager },
-                    capro::Level { CardLevel::HIGH },
+                    wdpro::Bind { cmdListCard },
                     outlined_card::pro::Layout<Col> {
                         lnpro::Margin { 0 },
                         lnpro::Item<ScrollArea> {
