@@ -11,9 +11,9 @@
 auto IconProvider::initFont() -> bool {
     if (fontLoaded_) return true;
     // Load from Qt resource (embedded in binary), fall back to filesystem
-    auto path = QString(":/MaterialIcons-Regular.ttf");
+    auto path = QString(":/MaterialIconsRound-Regular.otf");
     if (!QFile::exists(path))
-        path = "/usr/share/fonts/truetype/material-design-icons-iconfont/MaterialIcons-Regular.ttf";
+        path = "/usr/share/fonts/truetype/material-design-icons-iconfont/MaterialIconsRound-Regular.otf";
     int id = QFontDatabase::addApplicationFont(path);
     if (id == -1) return false;
     auto families = QFontDatabase::applicationFontFamilies(id);

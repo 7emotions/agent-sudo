@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file alias="MaterialIcons-Regular.ttf">src/gui/MaterialIcons-Regular.ttf</file>
+        <file alias="MaterialIconsRound-Regular.otf">src/gui/MaterialIconsRound-Regular.otf</file>
     </qresource>
 </RCC>

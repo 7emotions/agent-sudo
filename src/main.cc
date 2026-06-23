@@ -339,7 +339,7 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont("Material Icons", 16) },
+                            QFont("Material Icons Round", 16) },
                         button::pro::Text {
                             QString::fromUtf8(icon::kPalette) },
                         wdpro::FixedSize { 32, 32 },
@@ -360,27 +360,22 @@ int main(int argc, char* argv[]) {
                             QString::fromUtf8(icon::kLightMode) },
                         wdpro::FixedSize { 32, 32 },
                         button::pro::Clickable { [&] {
-                            ColorMode newMode =
-                                mode == ColorMode::LIGHT
-                                    ? ColorMode::DARK
-                                    : ColorMode::LIGHT;
-                            mode = newMode;
+                            manager.toggle_color_mode();
+                            mode = manager.color_mode();
                             cfg.setValue("theme/mode",
-                                newMode == ColorMode::LIGHT ? 0 : 1);
+                                mode == ColorMode::LIGHT ? 0 : 1);
                             cfg.sync();
                             modeB->setText(QString::fromUtf8(
-                                newMode == ColorMode::LIGHT
+                                mode == ColorMode::LIGHT
                                     ? icon::kLightMode
                                     : icon::kDarkMode));
-                            switchTheme(manager, kPresetPacks[presetIdx],
-                                        newMode, anim.get());
                         }},
                     },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { pauseB },
                         wdpro::Font {
-                            QFont("Material Icons", 16) },
+                            QFont("Material Icons Round", 16) },
                         button::pro::Text {
                             QString::fromUtf8(icon::kPause) },
                         wdpro::FixedSize { 32, 32 },
