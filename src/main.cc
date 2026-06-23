@@ -18,6 +18,7 @@
 #include "gui/sound.h"
 
 #include <QApplication>
+#include <QCursor>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QLineEdit>
@@ -30,6 +31,7 @@ namespace capro = card::pro;
 namespace lnpro = linear::pro;
 namespace wdpro = widget::pro;
 namespace ic = icon_button::pro;
+namespace mpro = mixer::pro;
 
 static const ThemePack kPresetPacks[] = {
     kBlueMikuThemePack,
@@ -128,6 +130,7 @@ int main(int argc, char* argv[]) {
 
     // ---- Pointers ----
     auto* ringW      = new RingCountdown;
+    MixerMask* maskWindow = nullptr;
     OutlinedTextField* pwF   = nullptr;
     OutlinedTextField* llmF  = nullptr;
     TextButton*        llmB  = nullptr;
@@ -273,6 +276,7 @@ int main(int argc, char* argv[]) {
 
         mwpro::MinimumSize { 700, 550 },
         mwpro::MoveCenter {},
+        mpro::SetMixerMask { maskWindow },
         mwpro::Central<FilledCard> {
             capro::ThemeManager { manager },
             capro::Layout<Col> {
@@ -441,6 +445,11 @@ int main(int argc, char* argv[]) {
     };
 
     manager.apply_theme();
+    manager.append_begin_callback(
+        [maskWindow](const ThemeManager&) {
+            auto const point = maskWindow->mapFromGlobal(QCursor::pos());
+            maskWindow->initiate_animation(point);
+        });
     app::exec();
 
     // ---- Post-GUI: execute approved commands ----
