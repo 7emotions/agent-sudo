@@ -13,13 +13,12 @@ int execCommands(const QString& password,
     QProcess proc;
     proc.start("sudo", {"-k", "-S", "bash", "-c", bashScript});
     if (!proc.waitForStarted(5000)) {
-        QString pw = password;
+        auto pw = password;
         scrubPassword(pw);
         return 127;
     }
-    // Wait for "[sudo] password" prompt, then send password
-    proc.waitForReadyRead(3000);
     proc.write(password.toUtf8() + "\n");
+    proc.closeWriteChannel();
 
     {
         QString pw = password;
