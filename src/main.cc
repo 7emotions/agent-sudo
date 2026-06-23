@@ -19,6 +19,7 @@
 
 #include <QApplication>
 #include <QCursor>
+#include <QGuiApplication>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QLineEdit>
@@ -159,11 +160,11 @@ int main(int argc, char* argv[]) {
         [&](MainWindow& window) noexcept {
             window.setWindowTitle(QString::fromUtf8("Agent 特权命令审批"));
             window.setFixedSize(700, 550);
-            auto* scr = QApplication::primaryScreen();
+            auto* scr = QGuiApplication::screenAt(QCursor::pos());
             if (scr) {
                 auto g = scr->availableGeometry();
-                window.move((g.width() - 700) / 2,
-                            (g.height() - 550) / 2);
+                window.move((g.width() - 700) / 2 + g.x(),
+                            (g.height() - 550) / 2 + g.y());
             }
 
             pwF->setEchoMode(QLineEdit::Password);
