@@ -276,7 +276,6 @@ int main(int argc, char* argv[]) {
 
         mwpro::MinimumSize { 700, 550 },
         mwpro::MoveCenter {},
-        mpro::SetMixerMask { maskWindow },
         mwpro::Central<FilledCard> {
             capro::ThemeManager { manager },
             capro::Layout<Col> {
@@ -442,6 +441,7 @@ int main(int argc, char* argv[]) {
                 },
             },
         },
+        mpro::SetMixerMask { maskWindow },
     };
 
     manager.apply_theme();
