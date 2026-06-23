@@ -1,6 +1,4 @@
 #include "command_card.h"
-#include "gui/icon.h"
-#include "gui/icon_codes.h"
 
 #include <creeper-qt/creeper-qt.hh>
 #include <QFont>
@@ -15,6 +13,7 @@ namespace mwpro = main_window::pro;
 namespace capro = card::pro;
 namespace lnpro = linear::pro;
 namespace wdpro = widget::pro;
+namespace ic = icon_button::pro;
 
 // Available width for command text inside a 700px window:
 //   700 - 28(card padding) - 16(scroll+mask padding) - 32(switch) ≈ 624
@@ -38,16 +37,11 @@ static Danger detectDanger(const QString& cmd) {
 
 static const char* dangerIcon(Danger d) {
     switch (d) {
-        case Danger::Danger:  return "\uE002";  // warning
-        case Danger::Warning: return "\uE000";  // error
-        case Danger::Safe:    return "\uE86C";  // check_circle
+        case Danger::Danger:  return material::icon::kWarning;
+        case Danger::Warning: return material::icon::kError;
+        case Danger::Safe:    return material::icon::kCheckCircle;
     }
     return "";
-}
-
-static auto dangerLabel(Danger d, const QColor& color) -> QLabel* {
-    return IconProvider::iconLabel(
-        QString::fromUtf8(dangerIcon(d)), color, 16);
 }
 
 struct HoverBorder : QObject {
@@ -97,12 +91,26 @@ QWidget* buildCommandCards(const QJsonArray& items,
         auto* titleRow = new Row {
             lnpro::Margin { 0 },
             lnpro::Spacing { 8 },
-            lnpro::Item<QWidget> {
-                IconProvider::iconLabel(icon::kTerminal,
-                    manager->color_scheme().on_surface, 18) },
-            lnpro::Item<QWidget> {
-                dangerLabel(detectDanger(command),
-                    manager->color_scheme().on_surface) },
+            lnpro::Item<IconButton> {
+                ic::ThemeManager { *manager },
+                ic::ColorStandard,
+                ic::ShapeRound,
+                ic::TypesDefault,
+                ic::WidthDefault,
+                ic::Font { material::round::font_0 },
+                ic::FontIcon { material::icon::kTerminal },
+                ic::FixedSize { 22, 22 },
+            },
+            lnpro::Item<IconButton> {
+                ic::ThemeManager { *manager },
+                ic::ColorStandard,
+                ic::ShapeRound,
+                ic::TypesDefault,
+                ic::WidthDefault,
+                ic::Font { material::round::font_0 },
+                ic::FontIcon { dangerIcon(detectDanger(command)) },
+                ic::FixedSize { 22, 22 },
+            },
             lnpro::Item<Text> {
                 text::pro::ThemeManager { *manager },
                 wdpro::Font { QFont("sans-serif", 12) },

@@ -293,9 +293,16 @@ int main(int argc, char* argv[]) {
                 lnpro::Item<Row> {
                     lnpro::Margin { 10 },
                     lnpro::Spacing { 8 },
-                    lnpro::Item<QWidget> {
-                        IconProvider::iconLabel(icon::kChecklist,
-                            manager.color_scheme().on_surface, 18) },
+                    lnpro::Item<IconButton> {
+                        ic::ThemeManager { manager },
+                        ic::ColorStandard,
+                        ic::ShapeRound,
+                        ic::TypesDefault,
+                        ic::WidthDefault,
+                        ic::Font { material::round::font_1 },
+                        ic::FixedSize { 22, 22 },
+                        ic::FontIcon { material::icon::kChecklist },
+                    },
                     lnpro::Item<Text> {
                         text::pro::ThemeManager { manager },
                         text::pro::Text {

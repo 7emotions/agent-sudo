@@ -140,6 +140,10 @@ namespace material {
         constexpr auto kPause       = "pause";
         constexpr auto kPlayArrow   = "play_arrow";
         constexpr auto kLightMode   = "light_mode";
+
+        // Danger levels
+        constexpr auto kWarning     = "warning";
+        constexpr auto kError       = "error";
     }
 }
 }
