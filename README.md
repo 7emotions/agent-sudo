@@ -16,6 +16,7 @@
   <img src="https://img.shields.io/badge/version-2.0.0-blue" alt="version" />
   <img src="https://img.shields.io/badge/platform-Linux-lightseagreen" alt="platform" />
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license" />
+  <img src="https://img.shields.io/github/v/release/7emotions/agent-sudo" alt="release" />
 </p>
 
 ---
@@ -26,7 +27,7 @@ AI Agent 在执行任务时经常需要 root 权限 — 装软件包、管理系
 
 **agent-sudo** 解决了这个问题：Agent 把需要特权的命令排进队列，然后弹出一个 GUI 窗口供人类查看、勾选、审批。一条命令都不漏，一条命令都不多。
 
-![agent-sudo GUI](imgs/agent-sudo-gui.png)
+![agent-sudo GUI](imgs/agent-sudo-gui-v2.png)
 
 ## 为什么不用 pkexec / sudo？
 
