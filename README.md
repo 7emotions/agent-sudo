@@ -31,6 +31,14 @@ AI Agent 在执行任务时经常需要 root 权限 — 装软件包、管理系
   <img src="imgs/agent-sudo-gui.png" alt="agent-sudo GUI" width="600" />
 </p>
 
+### 演示
+
+从终端排队命令到 GUI 审批的完整流程：
+
+<p align="center">
+  <img src="imgs/agent-sudo-demo.gif" alt="agent-sudo 完整演示" width="600" />
+</p>
+
 ## 为什么不用 pkexec / sudo？
 
 | 方案 | 问题 |
