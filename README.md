@@ -27,7 +27,9 @@ AI Agent 在执行任务时经常需要 root 权限 — 装软件包、管理系
 
 **agent-sudo** 解决了这个问题：Agent 把需要特权的命令排进队列，然后弹出一个 GUI 窗口供人类查看、勾选、审批。一条命令都不漏，一条命令都不多。
 
-![agent-sudo GUI](imgs/agent-sudo-gui-v2.png)
+<p align="center">
+  <img src="imgs/agent-sudo-gui-v2.png" alt="agent-sudo GUI" width="600" />
+</p>
 
 ## 为什么不用 pkexec / sudo？
 
@@ -217,6 +219,10 @@ agent-sudo/
 ├── LICENSE
 └── README.md
 ```
+
+## 致谢
+
+UI 框架基于 [creeper-qt](https://github.com/creeper5820/creeper-qt)，感谢作者 [@creeper5820](https://github.com/creeper5820) 的优秀工作。
 
 ## 贡献
 
