@@ -38,9 +38,9 @@ static Danger detectDanger(const QString& cmd) {
 
 static const char* dangerIcon(Danger d) {
     switch (d) {
-        case Danger::Danger:  return "\uE002";  // warning
-        case Danger::Warning: return "\uE000";  // error
-        case Danger::Safe:    return "\uE86C";  // check_circle
+        case Danger::Danger:  return "warning";
+        case Danger::Warning: return "error";
+        case Danger::Safe:    return "check_circle";
     }
     return "";
 }
