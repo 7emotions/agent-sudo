@@ -9,8 +9,8 @@
 
 auto IconProvider::initFont() -> bool {
     if (fontLoaded_) return true;
-    auto appDir = QCoreApplication::applicationDirPath();
-    auto path = appDir + "/../src/gui/MaterialIcons-Regular.ttf";
+    // Load from Qt resource (embedded in binary), fall back to filesystem
+    auto path = QString(":/MaterialIcons-Regular.ttf");
     if (!QFile::exists(path))
         path = "/usr/share/fonts/truetype/material-design-icons-iconfont/MaterialIcons-Regular.ttf";
     int id = QFontDatabase::addApplicationFont(path);

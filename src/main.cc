@@ -338,7 +338,7 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont("Material Icons", 16) },
+                            IconProvider::font(16) },
                         button::pro::Text {
                             QString::fromUtf8(icon::kPalette) },
                         wdpro::FixedSize { 32, 32 },
@@ -353,7 +353,7 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont("Material Icons", 16) },
+                            IconProvider::font(16) },
                         button::pro::Text {
                             mode == ColorMode::LIGHT
                                 ? QString::fromUtf8(icon::kLightMode)
@@ -376,7 +376,7 @@ int main(int argc, char* argv[]) {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { pauseB },
                         wdpro::Font {
-                            QFont("Material Icons", 16) },
+                            IconProvider::font(16) },
                         button::pro::Text {
                             QString::fromUtf8(icon::kPause) },
                         wdpro::FixedSize { 32, 32 },

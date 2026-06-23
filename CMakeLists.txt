@@ -56,6 +56,7 @@ target_link_libraries(creeper-qt-widgets
 # ══════════════════════════════════════════════════════════════════════════
 
 add_executable(agent-sudo-flush
+    resources.qrc
     src/main.cc
     src/gui/command_card.cc
     src/gui/icon.cc
