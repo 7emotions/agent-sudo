@@ -172,10 +172,14 @@ int main(int argc, char* argv[]) {
             window.setWindowTitle(tr::t("Agent 特权命令审批"));
             window.setFixedSize(700, 550);
             auto* scr = QGuiApplication::screenAt(QCursor::pos());
+            if (!scr)
+                scr = QGuiApplication::primaryScreen();
             if (scr) {
+                window.hide();
                 auto g = scr->availableGeometry();
                 window.move((g.width() - 700) / 2 + g.x(),
                             (g.height() - 550) / 2 + g.y());
+                window.show();
             }
 
             auto* escShortcut = new QShortcut(Qt::Key_Escape, &window);
