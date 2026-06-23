@@ -25,8 +25,8 @@ sudo apt install -y python3-pyside2.qtwidgets
 ### 3. 创建符号链接
 
 ```bash
-sudo ln -sf ~/pkagt/agent-sudo/main.py /usr/local/bin/agent-sudo
-sudo ln -sf ~/pkagt/agent-sudo/main.py /usr/local/bin/agent-sudo-flush
+sudo ln -sf ~/pkagt/main.py /usr/local/bin/agent-sudo
+sudo ln -sf ~/pkagt/main.py /usr/local/bin/agent-sudo-flush
 ```
 
 ### 4. 验证

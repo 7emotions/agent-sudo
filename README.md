@@ -24,7 +24,7 @@ AI Agent 在执行任务时经常需要 root 权限 — 装软件包、管理系
 
 pkagt 的核心组件 **agent-sudo** 解决了这个问题：Agent 把需要特权的命令排进队列，然后弹出一个 GUI 窗口供人类查看、勾选、审批。一条命令都不漏，一条命令都不多。
 
-![agent-sudo GUI](agent-sudo/agent-sudo-gui-v4.png)
+![agent-sudo GUI](imgs/agent-sudo-gui.png)
 
 ## 快速开始
 
@@ -80,8 +80,8 @@ agent-sudo-flush
 安装后创建符号链接：
 
 ```bash
-ln -s $(pwd)/agent-sudo/main.py /usr/local/bin/agent-sudo
-ln -s $(pwd)/agent-sudo/main.py /usr/local/bin/agent-sudo-flush
+ln -s $(pwd)/main.py /usr/local/bin/agent-sudo
+ln -s $(pwd)/main.py /usr/local/bin/agent-sudo-flush
 ```
 
 ## 使用示例
@@ -155,12 +155,13 @@ Agent                          pkagt                          Human
 
 ```
 pkagt/
-├── agent-sudo/
-│   ├── main.py                  # CLI + GUI 主程序
-│   ├── SKILL.md                 # OpenCode Skill 定义
-│   ├── e2e_test.py              # 端到端测试
-│   ├── functional_gui_test.py   # GUI 功能测试
-│   └── test.sh                  # 集成测试脚本
+├── main.py                  # CLI + GUI 主程序（agent-sudo / agent-sudo-flush）
+├── SKILL.md                 # OpenCode Skill 定义
+├── e2e_test.py              # 端到端测试
+├── functional_gui_test.py   # GUI 功能测试
+├── test.sh                  # 集成测试脚本
+├── imgs/
+│   └── agent-sudo-gui.png   # GUI 截图
 ├── INSTALL.md
 ├── LICENSE
 └── README.md
