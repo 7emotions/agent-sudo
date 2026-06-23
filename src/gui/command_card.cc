@@ -21,6 +21,35 @@ namespace wdpro = widget::pro;
 // Leave headroom: use 550.
 static constexpr int kCmdMaxWidth = 550;
 
+enum class Danger { Safe, Warning, Danger };
+
+static Danger detectDanger(const QString& cmd) {
+    auto c = cmd.toLower();
+    if (c.contains("rm -rf") || c.contains("rm -r") || c.contains("dd if=")
+        || c.contains("mkfs") || c.contains("/dev/sd") || c.contains("> /dev/")
+        || c.contains("fork bomb") || c.contains(":(){ :|:& };:"))
+        return Danger::Danger;
+    if (c.contains("systemctl stop") || c.contains("kill") || c.contains("pkill")
+        || c.contains("chmod") || c.contains("chown") || c.contains("mount ")
+        || c.contains("umount") || c.contains("iptables"))
+        return Danger::Warning;
+    return Danger::Safe;
+}
+
+static const char* dangerIcon(Danger d) {
+    switch (d) {
+        case Danger::Danger:  return "warning";
+        case Danger::Warning: return "error";
+        case Danger::Safe:    return "check_circle";
+    }
+    return "";
+}
+
+static auto dangerLabel(Danger d, const QColor& color) -> QLabel* {
+    return IconProvider::iconLabel(
+        QString::fromUtf8(dangerIcon(d)), color, 16);
+}
+
 struct HoverBorder : QObject {
     HoverBorder(FilledCard* c, QColor normal, QColor hover)
         : card(c), normal_(normal), hover_(hover) {}
@@ -71,6 +100,9 @@ QWidget* buildCommandCards(const QJsonArray& items,
             lnpro::Item<QWidget> {
                 IconProvider::iconLabel(icon::kTerminal,
                     manager->color_scheme().on_surface, 16) },
+            lnpro::Item<QWidget> {
+                dangerLabel(detectDanger(command),
+                    manager->color_scheme().on_surface) },
             lnpro::Item<Text> {
                 text::pro::ThemeManager { *manager },
                 wdpro::Font { QFont("sans-serif", 12) },
