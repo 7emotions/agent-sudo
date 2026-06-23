@@ -27,7 +27,7 @@ auto IconProvider::initFont() -> bool {
 auto IconProvider::font(int size) -> QFont {
     initFont();
     QFont f = iconFont_;
-    f.setPixelSize(size);
+    f.setPointSize(size);
     return f;
 }
 
