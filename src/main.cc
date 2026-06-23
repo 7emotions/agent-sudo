@@ -8,12 +8,6 @@
 
 #include <creeper-qt/creeper-qt.hh>
 #include <creeper-qt/core/application.hh>
-#include <creeper-qt/utility/theme/preset/blue-miku.hh>
-#include <creeper-qt/utility/theme/preset/gloden-harvest.hh>
-#include <creeper-qt/utility/theme/preset/green.hh>
-#include <creeper-qt/utility/animation/animatable.hh>
-#include <creeper-qt/utility/animation/transition.hh>
-#include <creeper-qt/utility/animation/state/linear.hh>
 
 #include "gui/command_card.h"
 #include "gui/ring_countdown.h"
@@ -22,7 +16,6 @@
 #include "gui/icon.h"
 #include "gui/icon_codes.h"
 #include "gui/sound.h"
-#include "gui/theme_transition.h"
 
 #include <QApplication>
 #include <QJsonArray>
@@ -41,29 +34,6 @@ static const ThemePack kPresetPacks[] = {
     kBlueMikuThemePack,
     kGoldenHarvestThemePack,
     kGreenThemePack,
-};
-
-static auto switchTheme(ThemeManager& mgr,
-                        const ThemePack& newPack,
-                        ColorMode newMode,
-                        creeper::Animatable* anim) -> void {
-    auto oldScheme = mgr.color_scheme();
-    mgr.set_theme_pack(newPack);
-    mgr.set_color_mode(newMode);
-    auto newScheme = mgr.color_scheme();
-    if (anim) {
-        auto state = std::make_shared<ThemeTransitionState>(
-            oldScheme, newScheme,
-            [&mgr](const ColorScheme& s) {
-                mgr.apply_theme();
-            });
-        auto running = std::make_shared<bool>(true);
-        anim->push_transition_task(
-            std::make_unique<creeper::TransitionTask<
-                ThemeTransitionState>>(state, running));
-    } else {
-        mgr.apply_theme();
-    }
 };
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -146,6 +116,7 @@ int main(int argc, char* argv[]) {
     int  remaining   = 60;
     bool paused      = false;
     bool done        = false;
+    bool timeout     = false;
     bool llmOpen     = false;
     int  exitCode    = 126;
     QJsonArray allItems = items;
@@ -156,7 +127,6 @@ int main(int argc, char* argv[]) {
 
     // ---- Pointers ----
     auto* ringW      = new RingCountdown;
-    std::unique_ptr<creeper::Animatable> anim;
     OutlinedTextField* pwF   = nullptr;
     OutlinedTextField* llmF  = nullptr;
     TextButton*        llmB  = nullptr;
@@ -193,8 +163,6 @@ int main(int argc, char* argv[]) {
                 window.move((g.width() - 700) / 2,
                             (g.height() - 550) / 2);
             }
-
-            anim = std::make_unique<creeper::Animatable>(window);
 
             pwF->setEchoMode(QLineEdit::Password);
             pwF->setPlaceholderText(QString::fromUtf8(""));
@@ -300,7 +268,7 @@ int main(int argc, char* argv[]) {
                     soundMgr.play(SoundManager::Event::Warning);
                 }
                 if (remaining <= 0) {
-                    done = true; exitCode = 126;
+                    done = true; timeout = true; exitCode = 126;
                     auto p = llmF->text().trimmed();
                     if (!p.isEmpty())
                         std::cout << "LLM_PROMPT: "
@@ -347,8 +315,8 @@ int main(int argc, char* argv[]) {
                             presetIdx = (presetIdx + 1) % 3;
                             cfg.setValue("theme/preset", presetIdx);
                             cfg.sync();
-                            switchTheme(manager, kPresetPacks[presetIdx],
-                                        manager.color_mode(), anim.get());
+                            manager.set_theme_pack(kPresetPacks[presetIdx]);
+                            manager.apply_theme();
                         }},
                     },
                     lnpro::Item<OutlinedButton> {
@@ -485,6 +453,6 @@ int main(int argc, char* argv[]) {
 
     if (!done) { clearQueue(); exitCode = 126; }
     if (exitCode == 126)
-        std::cout << "REJECTED: user dismissed" << std::endl;
+        std::cout << (timeout ? "REJECTED: timeout" : "REJECTED: user dismissed") << std::endl;
     return exitCode;
 }
