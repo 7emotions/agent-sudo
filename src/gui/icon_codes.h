@@ -18,8 +18,8 @@ inline constexpr auto kChecklist  = "\uE065";  // playlist_add_check
 
 // ── UI ──
 inline constexpr auto kPalette    = "\uE40A";
-inline constexpr auto kLightMode  = "\uE518";
-inline constexpr auto kDarkMode   = "\uE51C";
+inline constexpr auto kLightMode  = "\uE3A8";  // wb_sunny
+inline constexpr auto kDarkMode   = "\uE3AE";  // nights_stay
 inline constexpr auto kTerminal   = "\uE0D9";
 
 }
