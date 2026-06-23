@@ -1,5 +1,6 @@
 #include "command_card.h"
 #include "gui/icon.h"
+#include "gui/icon_codes.h"
 
 #include <creeper-qt/creeper-qt.hh>
 #include <QFont>
@@ -52,9 +53,9 @@ QWidget* buildCommandCards(const QJsonArray& items,
             lnpro::Item<Text> {
                 text::pro::ThemeManager { *manager },
                 text::pro::Text {
-                    QString::fromUtf8(material::icon::kTerminal) },
+                    QString::fromUtf8(icon::kTerminal) },
                 wdpro::Font {
-                    QFont(material::regular::font, material::size::_1) },
+                    IconProvider::font(material::size::_1) },
             },
             lnpro::Item<Text> {
                 text::pro::ThemeManager { *manager },

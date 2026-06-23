@@ -20,6 +20,7 @@
 #include "gui/queue_io.h"
 #include "gui/executor.h"
 #include "gui/icon.h"
+#include "gui/icon_codes.h"
 #include "gui/sound.h"
 #include "gui/theme_transition.h"
 
@@ -157,7 +158,7 @@ int main(int argc, char* argv[]) {
     OutlinedTextField* llmF  = nullptr;
     TextButton*        llmB  = nullptr;
     FilledButton*      execB = nullptr;
-    TextButton*        rejB  = nullptr;
+    OutlinedButton*    rejB  = nullptr;
     OutlinedButton*    pauseB= nullptr;
     QVector<Switch*>   sws;
 
@@ -279,8 +280,8 @@ int main(int argc, char* argv[]) {
             QObject::connect(pauseB, &QAbstractButton::clicked, [&] {
                 paused = !paused;
                 pauseB->setText(QString::fromUtf8(
-                    paused ? material::icon::kPlayArrow
-                           : material::icon::kPause));
+                    paused ? icon::kPlayArrow
+                           : icon::kPause));
             });
 
             // Enter key
@@ -325,10 +326,9 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<Text> {
                         text::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont(material::regular::font,
-                                  material::size::_1) },
+                            IconProvider::font(material::size::_1) },
                         text::pro::Text {
-                            QString::fromUtf8(material::icon::kChecklist) },
+                            QString::fromUtf8(icon::kChecklist) },
                     },
                     lnpro::Item<Text> {
                         text::pro::ThemeManager { manager },
@@ -342,9 +342,9 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont(material::regular::font, 16) },
+                            IconProvider::font(16) },
                         button::pro::Text {
-                            QString::fromUtf8(material::icon::kPalette) },
+                            QString::fromUtf8(icon::kPalette) },
                         wdpro::FixedSize { 32, 32 },
                         button::pro::Clickable { [&] {
                             presetIdx = (presetIdx + 1) % 3;
@@ -358,9 +358,9 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont(material::regular::font, 16) },
+                            IconProvider::font(16) },
                         button::pro::Text {
-                            QString::fromUtf8(material::icon::kLightMode) },
+                            QString::fromUtf8(icon::kLightMode) },
                         wdpro::FixedSize { 32, 32 },
                         button::pro::Clickable { [&] {
                             ColorMode newMode =
@@ -379,10 +379,9 @@ int main(int argc, char* argv[]) {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { pauseB },
                         wdpro::Font {
-                            QFont(material::regular::font,
-                                  material::size::_2) },
+                            IconProvider::font(material::size::_2) },
                         button::pro::Text {
-                            QString::fromUtf8(material::icon::kPause) },
+                            QString::fromUtf8(icon::kPause) },
                         wdpro::FixedSize { 32, 32 },
                     },
                 },
@@ -450,40 +449,40 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont(material::regular::font, 14) },
+                            IconProvider::font(14) },
                         button::pro::Text {
-                            QString::fromUtf8(material::icon::kSelectAll) },
+                            QString::fromUtf8(icon::kSelectAll) },
                         wdpro::FixedSize { 36, 32 },
                         button::pro::Clickable { [&] { setAll(true); } },
                     },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Font {
-                            QFont(material::regular::font, 14) },
+                            IconProvider::font(14) },
                         button::pro::Text {
-                            QString::fromUtf8(material::icon::kDeselect) },
+                            QString::fromUtf8(icon::kDeselect) },
                         wdpro::FixedSize { 36, 32 },
                         button::pro::Clickable { [&] { setAll(false); } },
                     },
                     lnpro::Stretch { 1 },
-                    lnpro::Item<TextButton> {
-                        text_button::pro::ThemeManager { manager },
+                    lnpro::Item<OutlinedButton> {
+                        outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { rejB },
                         wdpro::FixedSize { 80, 32 },
                         wdpro::Font {
-                            QFont(material::regular::font, 14) },
+                            IconProvider::font(14) },
                         button::pro::Text {
-                            QString::fromUtf8(material::icon::kClose)
+                            QString::fromUtf8(icon::kClose)
                                 + QString::fromUtf8(" 拒绝") },
                     },
                     lnpro::Item<FilledButton> {
                         filled_button::pro::ThemeManager { manager },
                         wdpro::Bind { execB },
-                        wdpro::FixedSize { 170, 36 },
+                        wdpro::FixedSize { 185, 36 },
                         wdpro::Font {
-                            QFont(material::regular::font, 14) },
+                            IconProvider::font(14) },
                         button::pro::Text {
-                            QString::fromUtf8(material::icon::kCheck)
+                            QString::fromUtf8(icon::kCheck)
                                 + QString::fromUtf8(" 执行 (Enter)") },
                     },
                 },
