@@ -389,6 +389,7 @@ int main(int argc, char* argv[]) {
                     outlined_card::pro::Layout<Col> {
                         lnpro::Margin { 0 },
                         lnpro::Item<ScrollArea> {
+                            { 1 },
                             scroll::pro::ThemeManager { manager },
                             scroll::pro::Item<QWidget> { cmdWidget },
                         },
