@@ -26,7 +26,7 @@ int execCommands(const QString& password,
     }
 
     QString fullOut;
-    QStringList noise = {"[sudo]", "sudo:", "Sorry", "password"};
+    QStringList noise = {"[sudo]", "sudo:"};
     while (proc.state() == QProcess::Running || proc.bytesAvailable() > 0) {
         if (proc.waitForReadyRead(1000)) {
             while (proc.canReadLine()) {
