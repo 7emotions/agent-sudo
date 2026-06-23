@@ -18,7 +18,7 @@ int execCommands(const QString& password,
         return 127;
     }
     proc.write(password.toUtf8() + "\n");
-    proc.closeWriteChannel();
+    proc.waitForBytesWritten(5000);
 
     {
         QString pw = password;
@@ -70,7 +70,7 @@ int execCommands(const QString& password,
         p2.start("sudo", {"-k", "-S", "bash", "-c", bashScript});
         if (!p2.waitForStarted(5000)) { scrubPassword(rp); return 127; }
         p2.write(rp.toUtf8() + "\n");
-        p2.closeWriteChannel();
+        p2.waitForBytesWritten(5000);
         scrubPassword(rp);
         p2.waitForFinished(300000);
         rc = p2.exitCode();
