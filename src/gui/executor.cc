@@ -44,8 +44,16 @@ int execCommands(const QString& password,
             if (ls.startsWith(p)) { skip = true; break; }
         if (!skip) std::cout << ls.toStdString() << std::endl;
     }
-    if (!err.trimmed().isEmpty())
-        std::cerr << err.toStdString();
+    if (!err.trimmed().isEmpty()) {
+        for (auto& line : err.split('\n')) {
+            auto ls = line.trimmed();
+            if (ls.isEmpty()) continue;
+            bool skip = false;
+            for (auto& p : noise)
+                if (ls.startsWith(p)) { skip = true; break; }
+            if (!skip) std::cerr << ls.toStdString() << std::endl;
+        }
+    }
 
     // Auth failure → retry once
     if (rc == 1 && isAuthFail(out + "\n" + err)) {
