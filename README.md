@@ -28,7 +28,7 @@ AI Agent 在执行任务时经常需要 root 权限 — 装软件包、管理系
 **agent-sudo** 解决了这个问题：Agent 把需要特权的命令排进队列，然后弹出一个 GUI 窗口供人类查看、勾选、审批。一条命令都不漏，一条命令都不多。
 
 <p align="center">
-  <img src="imgs/agent-sudo-gui-v2.png" alt="agent-sudo GUI" width="600" />
+  <img src="imgs/agent-sudo-gui.png" alt="agent-sudo GUI" width="600" />
 </p>
 
 ## 为什么不用 pkexec / sudo？
@@ -271,7 +271,7 @@ agent-sudo/
 ├── lang/                        # 7 种语言 JSON 文件（zh 为内置默认）
 │   ├── en.json / ja.json / ko.json / fr.json / de.json / es.json / pt.json
 ├── imgs/
-│   └── agent-sudo-gui-v2.png    # GUI 截图
+│   └── agent-sudo-gui.png    # GUI 截图
 ├── CMakeLists.txt               # CMake 构建配置
 ├── resources.qrc                # Qt 资源文件（字体 + 语言 JSON）
 ├── test_real_world.sh           # 端到端集成测试
