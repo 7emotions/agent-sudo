@@ -76,12 +76,20 @@ auto IconProvider::appIconSvg() -> const char* {
 auto IconProvider::iconLabel(const QString& name,
                              const QColor& color,
                              int size) -> QLabel* {
-    auto* label = new QLabel(name);
-    label->setFont(QFont("Material Icons Round", size));
-    label->setStyleSheet(
-        QString("color:%1; background:transparent;").arg(color.name()));
-    label->setFixedSize(size + 2, size + 2);
-    label->setAlignment(Qt::AlignCenter);
+    QPixmap pm(size + 4, size + 4);
+    pm.fill(Qt::transparent);
+    QPainter p(&pm);
+    p.setRenderHint(QPainter::Antialiasing);
+    p.setPen(color);
+    QFont f("Material Icons Round", size);
+    f.setStyleStrategy(QFont::PreferQuality);
+    p.setFont(f);
+    p.drawText(QRect(0, 0, pm.width(), pm.height()),
+               Qt::AlignCenter, name);
+    p.end();
+    auto* label = new QLabel;
+    label->setPixmap(pm);
+    label->setFixedSize(pm.size());
     return label;
 }
 
