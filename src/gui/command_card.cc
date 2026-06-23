@@ -33,6 +33,7 @@ struct HoverBorder : QObject {
     }
     void setColors(QColor normal, QColor hover) {
         normal_ = normal; hover_ = hover;
+        card->set_border_width(1.5);
         card->set_border_color(normal);
     }
     FilledCard* card;
@@ -98,6 +99,7 @@ QWidget* buildCommandCards(const QJsonArray& items,
             },
         };
         card->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        card->set_border_width(1.5);
         card->set_border_color(scheme.outline);
         card->setAttribute(Qt::WA_Hover, true);
         auto* hover = new HoverBorder(card, scheme.outline, scheme.primary);
