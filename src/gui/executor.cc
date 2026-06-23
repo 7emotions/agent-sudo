@@ -59,7 +59,7 @@ int execCommands(const QString& password,
 
     int rc = proc.exitCode();
     if (rc == 1 && isAuthFail(fullOut)) {
-        std::cerr << "ERROR: authentication failed" << std::endl;
+        std::cerr << "ERROR: authentication failed (exit code " << rc << ")" << std::endl;
         // Retry with CLI password prompt
         std::cerr << "Enter sudo password (or Ctrl+C to abort): " << std::flush;
         std::string retryPw;
