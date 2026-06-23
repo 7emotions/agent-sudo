@@ -18,7 +18,7 @@ namespace wdpro = widget::pro;
 static constexpr int kCmdMaxWidth = 550;
 
 struct HoverBorder : QObject {
-    HoverBorder(FilledCard* c, QColor normal, QColor hover)
+    HoverBorder(OutlinedCard* c, QColor normal, QColor hover)
         : card(c), normal_(normal), hover_(hover) {}
     bool eventFilter(QObject*, QEvent* e) override {
         if (e->type() == QEvent::Enter)
@@ -31,7 +31,7 @@ struct HoverBorder : QObject {
         normal_ = normal; hover_ = hover;
         card->set_border_color(normal);
     }
-    FilledCard* card;
+    OutlinedCard* card;
     QColor normal_, hover_;
 };
 
@@ -80,7 +80,7 @@ QWidget* buildCommandCards(const QJsonArray& items,
             },
         };
 
-        auto* card = new FilledCard {
+        auto* card = new OutlinedCard {
             capro::ThemeManager { *manager },
             capro::Layout<Col> {
                 lnpro::Margin { 6 },
@@ -94,7 +94,6 @@ QWidget* buildCommandCards(const QJsonArray& items,
             },
         };
         card->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        card->set_border_width(1);
         card->set_border_color(scheme.outline);
         card->setAttribute(Qt::WA_Hover, true);
         auto* hover = new HoverBorder(card, scheme.outline, scheme.primary);
