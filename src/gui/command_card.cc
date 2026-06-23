@@ -106,7 +106,6 @@ QWidget* buildCommandCards(const QJsonArray& items,
         };
         card->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         card->setAttribute(Qt::WA_Hover, true);
-        card->set_border_color(scheme.outline);
         card->installEventFilter(
             new HoverHighlighter(card, scheme, hoverScheme));
 
