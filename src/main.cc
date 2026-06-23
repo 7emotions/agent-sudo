@@ -353,9 +353,9 @@ int main(int argc, char* argv[]) {
                     },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
+                        wdpro::Bind { modeB },
                         wdpro::Font {
                             QFont("Material Icons", 16) },
-                        wdpro::Bind { modeB },
                         button::pro::Text {
                             QString::fromUtf8(icon::kLightMode) },
                         wdpro::FixedSize { 32, 32 },
