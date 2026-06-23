@@ -352,11 +352,11 @@ int main(int argc, char* argv[]) {
                     },
                 },
 
-                // ── Command list ──
-                lnpro::Item<FilledCard> {
-                    capro::ThemeManager { manager },
+                // ── Command list with its own mask ──
+                lnpro::Item<OutlinedCard> {
+                    outlined_card::pro::ThemeManager { manager },
                     capro::Level { CardLevel::HIGH },
-                    capro::Layout<Col> {
+                    outlined_card::pro::Layout<Col> {
                         lnpro::Margin { 0 },
                         lnpro::Item<ScrollArea> {
                             scroll::pro::ThemeManager { manager },
