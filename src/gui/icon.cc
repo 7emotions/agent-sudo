@@ -77,7 +77,7 @@ auto IconProvider::iconLabel(const QString& name,
                              const QColor& color,
                              int size) -> QLabel* {
     auto* label = new QLabel(name);
-    label->setFont(QFont("Material Icons Round", size - 2));
+    label->setFont(QFont("Material Icons Round", size));
     label->setStyleSheet(
         QString("color:%1; background:transparent;").arg(color.name()));
     label->setFixedSize(size + 2, size + 2);

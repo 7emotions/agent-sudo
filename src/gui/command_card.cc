@@ -99,7 +99,7 @@ QWidget* buildCommandCards(const QJsonArray& items,
             lnpro::Spacing { 8 },
             lnpro::Item<QWidget> {
                 IconProvider::iconLabel(icon::kTerminal,
-                    manager->color_scheme().on_surface, 16) },
+                    manager->color_scheme().on_surface, 18) },
             lnpro::Item<QWidget> {
                 dangerLabel(detectDanger(command),
                     manager->color_scheme().on_surface) },
