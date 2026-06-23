@@ -1,0 +1,20 @@
+# OpenCode internal
+.omo/
+.playwright-mcp/
+ref/
+boulder.json
+
+# Planning / draft artifacts
+*-gui.md
+task-*.md
+decisions.md
+learnings.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
