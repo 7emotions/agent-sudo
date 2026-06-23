@@ -389,6 +389,7 @@ int main(int argc, char* argv[]) {
                 lnpro::Item<OutlinedCard> {
                     outlined_card::pro::ThemeManager { manager },
                     wdpro::Bind { cmdListCard },
+                    capro::Radius { 0 },
                     outlined_card::pro::Layout<Col> {
                         lnpro::Margin { 0 },
                         lnpro::Item<ScrollArea> {
