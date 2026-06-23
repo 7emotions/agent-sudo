@@ -58,6 +58,7 @@ int execCommands(const QString& password,
     // Auth failure → retry once
     if (rc == 1 && isAuthFail(out + "\n" + err)) {
         std::cerr << "ERROR: authentication failed" << std::endl;
+        clearQueue();
         return 126;
     }
 
