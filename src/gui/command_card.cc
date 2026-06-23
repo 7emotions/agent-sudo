@@ -11,36 +11,24 @@
 #include <QVBoxLayout>
 
 using namespace creeper;
-namespace oc = outlined_card::pro;
-namespace mwpro = main_window::pro;
 namespace capro = card::pro;
 namespace lnpro = linear::pro;
 namespace wdpro = widget::pro;
 
-// Available width for command text inside a 700px window:
-//   700 - 28(card padding) - 16(scroll+mask padding) - 32(switch) ≈ 624
-// Leave headroom: use 550.
 static constexpr int kCmdMaxWidth = 550;
 
-/// Event filter that highlights a card on hover by swapping color schemes.
-class HoverHighlighter : public QObject {
-public:
-    HoverHighlighter(OutlinedCard* card, const ColorScheme& normal,
-                     const ColorScheme& hover)
-        : card_(card), normal_(normal), hover_(hover) {}
-
-protected:
+struct HoverBorder : QObject {
+    HoverBorder(OutlinedCard* c, QColor normal, QColor hover)
+        : card(c), normal_(normal), hover_(hover) {}
     bool eventFilter(QObject*, QEvent* e) override {
         if (e->type() == QEvent::Enter)
-            card_->set_color_scheme(hover_);
+            card->set_border_color(hover_);
         else if (e->type() == QEvent::Leave)
-            card_->set_color_scheme(normal_);
+            card->set_border_color(normal_);
         return false;
     }
-
-private:
-    OutlinedCard* card_;
-    ColorScheme normal_, hover_;
+    OutlinedCard* card;
+    QColor normal_, hover_;
 };
 
 QWidget* buildCommandCards(const QJsonArray& items,
@@ -55,9 +43,6 @@ QWidget* buildCommandCards(const QJsonArray& items,
     const QFont commandFont("Courier", 9);
     const QFontMetrics commandFm(commandFont);
     auto scheme = manager->color_scheme();
-    // Hover variant: slightly elevated surface
-    ColorScheme hoverScheme = scheme;
-    hoverScheme.surface = scheme.surface_container_high;
 
     switches.reserve(items.size());
 
@@ -105,10 +90,10 @@ QWidget* buildCommandCards(const QJsonArray& items,
             },
         };
         card->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        card->setAttribute(Qt::WA_Hover, true);
         card->set_border_color(scheme.outline);
+        card->setAttribute(Qt::WA_Hover, true);
         card->installEventFilter(
-            new HoverHighlighter(card, scheme, hoverScheme));
+            new HoverBorder(card, scheme.outline, scheme.primary));
 
         switches.append(sw);
         layout->addWidget(card);
