@@ -2,6 +2,7 @@
 #include "queue_io.h"
 #include <QProcess>
 #include <QSet>
+#include <QThread>
 #include <iostream>
 #include <string>
 
@@ -17,8 +18,12 @@ int execCommands(const QString& password,
         scrubPassword(pw);
         return 127;
     }
-    proc.write(password.toUtf8() + "\n");
-    proc.waitForBytesWritten(5000);
+    // Wait for "[sudo] password" prompt, then send password
+    if (proc.waitForReadyRead(3000)) {
+        proc.write(password.toUtf8() + "\n");
+    } else {
+        proc.write(password.toUtf8() + "\n");
+    }
     proc.closeWriteChannel();
 
     {
@@ -71,7 +76,7 @@ int execCommands(const QString& password,
         p2.start("sudo", {"-k", "-S", "bash", "-c", bashScript});
         if (!p2.waitForStarted(5000)) { scrubPassword(rp); return 127; }
         p2.write(rp.toUtf8() + "\n");
-        p2.waitForBytesWritten(5000);
+        QThread::msleep(500);
         p2.closeWriteChannel();
         scrubPassword(rp);
         p2.waitForFinished(300000);
