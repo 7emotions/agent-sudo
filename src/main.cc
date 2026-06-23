@@ -337,6 +337,8 @@ int main(int argc, char* argv[]) {
                     lnpro::Item { ringW },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
+                        wdpro::Font {
+                            QFont("Material Icons", 16) },
                         button::pro::Text {
                             QString::fromUtf8(icon::kPalette) },
                         wdpro::FixedSize { 32, 32 },
@@ -350,6 +352,8 @@ int main(int argc, char* argv[]) {
                     },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
+                        wdpro::Font {
+                            QFont("Material Icons", 16) },
                         button::pro::Text {
                             mode == ColorMode::LIGHT
                                 ? QString::fromUtf8(icon::kLightMode)
@@ -371,6 +375,8 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { pauseB },
+                        wdpro::Font {
+                            QFont("Material Icons", 16) },
                         button::pro::Text {
                             QString::fromUtf8(icon::kPause) },
                         wdpro::FixedSize { 32, 32 },
@@ -454,18 +460,16 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { rejB },
-                        wdpro::FixedSize { 90, 32 },
+                        wdpro::FixedSize { 80, 32 },
                         button::pro::Text {
-                            QString::fromUtf8(icon::kClose)
-                                + QString::fromUtf8(" \u62D2\u7EDD") },
+                            QString::fromUtf8("\u62D2\u7EDD") },
                     },
                     lnpro::Item<FilledButton> {
                         filled_button::pro::ThemeManager { manager },
                         wdpro::Bind { execB },
-                        wdpro::FixedSize { 150, 36 },
+                        wdpro::FixedSize { 120, 36 },
                         button::pro::Text {
-                            QString::fromUtf8(icon::kCheck)
-                                + QString::fromUtf8(" \u6267\u884C (Enter)") },
+                            QString::fromUtf8("\u6267\u884C (Enter)") },
                     },
                 },
             },
