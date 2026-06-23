@@ -1,9 +1,12 @@
 #include "icon.h"
+#include <QFontDatabase>
 #include <QPainter>
 #include <QSvgRenderer>
 
 auto IconProvider::initFont() -> bool {
     if (fontLoaded_) return true;
+    if (!QFontDatabase::hasFamily("Material Icons"))
+        return false;
     iconFont_ = QFont("Material Icons");
     iconFont_.setStyleStrategy(QFont::PreferQuality);
     fontLoaded_ = true;
