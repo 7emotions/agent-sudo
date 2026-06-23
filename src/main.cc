@@ -16,6 +16,7 @@
 #include "gui/icon.h"
 #include "gui/icon_codes.h"
 #include "gui/sound.h"
+#include "gui/tr.h"
 
 #include <QApplication>
 #include <QCursor>
@@ -89,7 +90,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (qEnvironmentVariableIsEmpty("DISPLAY")) {
-        std::cerr << "ERROR: DISPLAY not set" << std::endl;
+        std::cerr << tr::t("ERROR: DISPLAY not set") << std::endl;
         return 127;
     }
     auto queue = readQueue();
@@ -109,6 +110,8 @@ int main(int argc, char* argv[]) {
     app::init { app::pro::Complete { argc, argv } };
     IconProvider::initFont();
     QApplication::setWindowIcon(IconProvider::appIcon());
+
+    tr::load(cfg.value("lang", "").toString().toLower());
 
     auto manager = ThemeManager { kPresetPacks[presetIdx], mode };
 
@@ -166,7 +169,7 @@ int main(int argc, char* argv[]) {
     // ---- Main window ----
     creeper::ShowWindow<MainWindow> {
         [&](MainWindow& window) noexcept {
-            window.setWindowTitle(QString::fromUtf8("Agent 特权命令审批"));
+            window.setWindowTitle(tr::t("Agent 特权命令审批"));
             window.setFixedSize(700, 550);
             auto* scr = QGuiApplication::screenAt(QCursor::pos());
             if (scr) {

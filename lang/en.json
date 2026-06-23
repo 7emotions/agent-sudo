@@ -1,0 +1,16 @@
+{
+    "Agent 特权命令审批": "Agent Privilege Approval",
+    "共 %1 条待审批命令": "%1 command(s) pending",
+    "全选 (A)": "Select All (A)",
+    "取消全选 (C)": "Deselect (C)",
+    "拒绝 (Esc)": "Reject (Esc)",
+    "执行 (Enter)": "Execute (Enter)",
+    "请勾选命令": "Select commands",
+    "sudo 密码": "sudo Password",
+    "▶ 备注本次执行上下文 (LLM Prompt)": "▶ LLM Prompt",
+    "REJECTED: timeout": "REJECTED: timeout",
+    "REJECTED: user dismissed": "REJECTED: user dismissed",
+    "ERROR: DISPLAY not set": "ERROR: DISPLAY not set",
+    "ERROR: queue is empty": "ERROR: queue is empty",
+    "Usage: agent-sudo --reason \"...\" -- <command>": "Usage: agent-sudo --reason \"...\" -- <command>"
+}

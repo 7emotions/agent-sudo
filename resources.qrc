@@ -2,4 +2,7 @@
     <qresource prefix="/">
         <file alias="MaterialIconsRound-Regular.otf">src/gui/MaterialIconsRound-Regular.otf</file>
     </qresource>
+    <qresource prefix="/lang">
+        <file alias="en.json">lang/en.json</file>
+    </qresource>
 </RCC>
