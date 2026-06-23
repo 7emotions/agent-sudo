@@ -88,7 +88,7 @@ QWidget* buildCommandCards(const QJsonArray& items,
         auto* card = new FilledCard {
             card::pro::ThemeManager { *manager },
             card::pro::Layout<Col> {
-                lnpro::Margin { 0 },
+                lnpro::Margin { 8 },
                 lnpro::Spacing { 4 },
                 lnpro::Item<Row> { titleRow },
                 lnpro::Item<Text> {
