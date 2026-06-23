@@ -90,13 +90,13 @@ int main(int argc, char* argv[]) {
     }
 
     if (qEnvironmentVariableIsEmpty("DISPLAY")) {
-        std::cerr << tr::t("ERROR: DISPLAY not set") << std::endl;
+        std::cerr << tr::t("ERROR: DISPLAY not set").toStdString() << std::endl;
         return 127;
     }
     auto queue = readQueue();
     auto items = queue.value("items").toArray();
     if (items.isEmpty()) {
-        std::cerr << "ERROR: queue is empty" << std::endl;
+        std::cerr << tr::t("ERROR: queue is empty").toStdString() << std::endl;
         return 127;
     }
 
@@ -492,6 +492,8 @@ int main(int argc, char* argv[]) {
 
     if (!done) { clearQueue(); exitCode = 126; }
     if (exitCode == 126)
-        std::cout << (timeout ? "REJECTED: timeout" : "REJECTED: user dismissed") << std::endl;
+        std::cout << (timeout
+            ? tr::t("REJECTED: timeout").toStdString()
+            : tr::t("REJECTED: user dismissed").toStdString()) << std::endl;
     return exitCode;
 }
