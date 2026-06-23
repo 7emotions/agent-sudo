@@ -19,12 +19,8 @@ int execCommands(const QString& password,
         return 127;
     }
     // Wait for "[sudo] password" prompt, then send password
-    if (proc.waitForReadyRead(3000)) {
-        proc.write(password.toUtf8() + "\n");
-    } else {
-        proc.write(password.toUtf8() + "\n");
-    }
-    proc.closeWriteChannel();
+    proc.waitForReadyRead(3000);
+    proc.write(password.toUtf8() + "\n");
 
     {
         QString pw = password;
@@ -56,7 +52,7 @@ int execCommands(const QString& password,
         fullOut += QString::fromUtf8(rem);
     }
 
-    if (!proc.waitForFinished(300000)) {
+    if (!proc.waitForFinished(30000)) {
         proc.kill();
         proc.waitForFinished(5000);
         std::cerr << "ERROR: execution timed out" << std::endl;
