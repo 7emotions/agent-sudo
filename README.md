@@ -14,7 +14,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="version" />
-  <img src="https://img.shields.io/badge/platform-Linux-lightgrey" alt="platform" />
+  <img src="https://img.shields.io/badge/platform-Linux-lightseagreen" alt="platform" />
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license" />
 </p>
 
@@ -72,9 +72,11 @@ agent-sudo-flush
 ## 功能
 
 | 功能 | 说明 |
-|---|---|
+|---|---|---|
 | 命令队列 | 支持逐条添加，批量审批 |
-| 审批 GUI | PySide2 原生 Qt5 窗口，macOS Soft 设计风格 |
+| 审批 GUI | Qt6 C++ 原生窗口，支持主题切换和 Material Icons |
+| 主题管理 | 3 套主题预设（蓝色初音/金色丰收/森林绿）+ 亮/暗模式，300ms 渐变动画 |
+| 声音反馈 | 4 个事件触发点（打开/倒计时警告/执行/拒绝），QSettings 可自定义路径 |
 | 理由标注 | 每条命令附带人类可读的理由 |
 | 倒计时自动拒绝 | 60 秒无操作自动拒绝，避免 Agent 永久阻塞 |
 | 勾选控制 | 可以取消不需要的命令，只执行选中的 |
@@ -96,16 +98,18 @@ agent-sudo-flush
 
 参考 [`INSTALL.md`](INSTALL.md) 了解完整安装步骤。核心依赖：
 
-- Python 3.8+
-- PySide2 (`pip install PySide2`)
-- 有图形会话 (`$DISPLAY` 非空)
+- C++23 编译器（GCC 14+）
+- CMake 3.22+
+- Qt6（Widgets, Network, Svg, Multimedia）
+- Eigen3
+- Material Icons 字体（`fonts-material-design-icons-iconfont`）
 - `/usr/bin/sudo`
 
-安装后创建符号链接：
+构建安装：
 
 ```bash
-ln -s $(pwd)/src/main.py /usr/local/bin/agent-sudo
-ln -s $(pwd)/src/main.py /usr/local/bin/agent-sudo-flush
+cmake -S . -B build && cmake --build build
+sudo cp build/agent-sudo-flush /usr/local/bin/
 ```
 
 ## 使用示例
@@ -189,13 +193,22 @@ sequenceDiagram
 ```
 agent-sudo/
 ├── src/
-│   ├── main.py              # CLI + GUI 主程序（agent-sudo / agent-sudo-flush）
-│   ├── e2e_test.py          # 端到端测试
-│   ├── functional_gui_test.py
-│   └── test.sh              # 集成测试脚本
+│   ├── main.cc                  # 主程序入口（CLI 检测 + GUI 集成）
+│   ├── gui/
+│   │   ├── command_card.{h,cc}  # 命令审批卡片构建器
+│   │   ├── ring_countdown.{h,cc}# 环形倒计时组件（主题感知）
+│   │   ├── icon.{h,cc}          # 图标提供者（Material Icons + 应用 SVG）
+│   │   ├── sound.{h,cc}         # 声音管理器（QSoundEffect，可配置）
+│   │   ├── theme_transition.{h,cc}  # 主题切换动画（ColorScheme 插值）
+│   │   ├── queue_io.{h,cc}      # 队列/历史 JSON I/O
+│   │   ├── executor.{h,cc}      # sudo 子进程执行器
+│   │   └── creeper-qt/          # Qt6 组件库（vendored）
+│   ├── test.sh                  # 集成测试脚本
+│   └── agent-sudo               # CLI 入口（shell 脚本）
 ├── imgs/
-│   └── agent-sudo-gui.png   # GUI 截图
-├── SKILL.md                 # OpenCode Skill 定义
+│   └── agent-sudo-gui.png       # GUI 截图
+├── CMakeLists.txt               # CMake 构建配置
+├── SKILL.md                     # OpenCode Skill 定义
 ├── INSTALL.md
 ├── LICENSE
 └── README.md
