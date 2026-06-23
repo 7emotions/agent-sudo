@@ -86,8 +86,6 @@ QWidget* buildCommandCards(const QJsonArray& items,
         int id      = obj["id"].toInt();
         QString reason  = obj["reason"].toString();
         QString command = obj["command"].toString();
-        QString elidedCmd = commandFm.elidedText(command, Qt::ElideRight,
-                                                  kCmdMaxWidth);
 
         Switch* sw = nullptr;
 
@@ -136,7 +134,8 @@ QWidget* buildCommandCards(const QJsonArray& items,
                 lnpro::Item<Row> { titleRow },
                 lnpro::Item<Text> {
                     text::pro::ThemeManager { *manager },
-                    text::pro::Text { "→ " + elidedCmd },
+                    text::pro::WordWrap { true },
+                    text::pro::Text { "→ " + command },
                     wdpro::Font { commandFont },
                 },
             },
