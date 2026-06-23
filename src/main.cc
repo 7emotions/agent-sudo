@@ -279,9 +279,7 @@ int main(int argc, char* argv[]) {
             // Pause
             QObject::connect(pauseB, &QAbstractButton::clicked, [&] {
                 paused = !paused;
-                pauseB->setText(QString::fromUtf8(
-                    paused ? icon::kPlayArrow
-                           : icon::kPause));
+                pauseB->setText(paused ? "\u25B6" : "||");
             });
 
             // Enter key
@@ -325,27 +323,16 @@ int main(int argc, char* argv[]) {
                     lnpro::Spacing { 8 },
                     lnpro::Item<Text> {
                         text::pro::ThemeManager { manager },
-                        wdpro::Font {
-                            IconProvider::font(material::size::_1) },
-                        text::pro::Text {
-                            QString::fromUtf8(icon::kChecklist) },
-                    },
-                    lnpro::Item<Text> {
-                        text::pro::ThemeManager { manager },
                         text::pro::Text {
                             QString::fromUtf8("共 %1 条待审批命令")
                                 .arg(items.size()) },
                     },
                     lnpro::Stretch { 1 },
                     lnpro::Item { ringW },
-                    // Theme preset cycle button
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
-                        wdpro::Font {
-                            IconProvider::font(16) },
-                        button::pro::Text {
-                            QString::fromUtf8(icon::kPalette) },
-                        wdpro::FixedSize { 32, 32 },
+                        button::pro::Text { "C" },
+                        wdpro::FixedSize { 28, 28 },
                         button::pro::Clickable { [&] {
                             presetIdx = (presetIdx + 1) % 3;
                             cfg.setValue("theme/preset", presetIdx);
@@ -354,14 +341,14 @@ int main(int argc, char* argv[]) {
                                         manager.color_mode(), anim.get());
                         }},
                     },
-                    // Light/Dark toggle button
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
-                        wdpro::Font {
-                            IconProvider::font(16) },
                         button::pro::Text {
-                            QString::fromUtf8(icon::kLightMode) },
-                        wdpro::FixedSize { 32, 32 },
+                            mode == ColorMode::LIGHT
+                                ? QString::fromUtf8("\u263C")  // ☼
+                                : QString::fromUtf8("\u263D")  // ☽
+                        },
+                        wdpro::FixedSize { 28, 28 },
                         button::pro::Clickable { [&] {
                             ColorMode newMode =
                                 mode == ColorMode::LIGHT
@@ -378,10 +365,7 @@ int main(int argc, char* argv[]) {
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { pauseB },
-                        wdpro::Font {
-                            IconProvider::font(material::size::_2) },
-                        button::pro::Text {
-                            QString::fromUtf8(icon::kPause) },
+                        button::pro::Text { "||" },
                         wdpro::FixedSize { 32, 32 },
                     },
                 },
@@ -448,20 +432,15 @@ int main(int argc, char* argv[]) {
                     lnpro::Spacing { 8 },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
-                        wdpro::Font {
-                            IconProvider::font(14) },
-                        button::pro::Text {
-                            QString::fromUtf8(icon::kSelectAll) },
-                        wdpro::FixedSize { 36, 32 },
+                        button::pro::Text { QString::fromUtf8("全选") },
+                        wdpro::FixedSize { 60, 32 },
                         button::pro::Clickable { [&] { setAll(true); } },
                     },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
-                        wdpro::Font {
-                            IconProvider::font(14) },
                         button::pro::Text {
-                            QString::fromUtf8(icon::kDeselect) },
-                        wdpro::FixedSize { 36, 32 },
+                            QString::fromUtf8("取消全选") },
+                        wdpro::FixedSize { 90, 32 },
                         button::pro::Clickable { [&] { setAll(false); } },
                     },
                     lnpro::Stretch { 1 },
@@ -469,21 +448,15 @@ int main(int argc, char* argv[]) {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { rejB },
                         wdpro::FixedSize { 80, 32 },
-                        wdpro::Font {
-                            IconProvider::font(14) },
                         button::pro::Text {
-                            QString::fromUtf8(icon::kClose)
-                                + QString::fromUtf8(" 拒绝") },
+                            QString::fromUtf8("拒绝") },
                     },
                     lnpro::Item<FilledButton> {
                         filled_button::pro::ThemeManager { manager },
                         wdpro::Bind { execB },
-                        wdpro::FixedSize { 185, 36 },
-                        wdpro::Font {
-                            IconProvider::font(14) },
+                        wdpro::FixedSize { 120, 36 },
                         button::pro::Text {
-                            QString::fromUtf8(icon::kCheck)
-                                + QString::fromUtf8(" 执行 (Enter)") },
+                            QString::fromUtf8("执行 (Enter)") },
                     },
                 },
             },
