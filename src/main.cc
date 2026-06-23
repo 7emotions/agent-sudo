@@ -236,14 +236,7 @@ int main(int argc, char* argv[]) {
                 for (auto* s : sws) if (s->checked()) ++n;
                 if (n == 0) return;
                 sudoPw = pwF->text();
-                if (sudoPw.isEmpty()) {
-                    pwF->setPlaceholderText(
-                        tr::t("请输入 sudo 密码"));
-                    QTimer::singleShot(1500, pwF, [pwF] {
-                        pwF->setPlaceholderText("");
-                    });
-                    return;
-                }
+                if (sudoPw.isEmpty()) return;
                 soundMgr.play(SoundManager::Event::Executed);
                 done = true; exitCode = 0;
                 auto prompt = llmF->text().trimmed();
