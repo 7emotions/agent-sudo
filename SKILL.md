@@ -5,7 +5,23 @@ description: Queue privileged commands for user approval via GUI. Use when a tas
 
 # agent-sudo
 
-Queue privileged commands and present them as a batch for user approval via a GUI window.
+Queue privileged commands and present them as a batch for user approval via a GUI window. Built with C++23 / Qt6 / creeper-qt.
+
+## Dependencies
+
+- Qt6 (Widgets, Network, Svg, Multimedia)
+- Eigen3
+- CMake 3.22+, GCC 14+
+- Material Icons Round font (bundled in binary)
+
+## Features
+
+- Theme management (3 presets + light/dark, animated transitions)
+- Sound feedback (configurable per event via QSettings)
+- Danger level detection (safe/warning/danger icons)
+- Keyboard shortcuts (Esc=reject, A=select all, C=deselect)
+- Multi-language support (zh/en/ja/ko/fr/de/es/pt)
+- Click card to toggle selection
 
 ## Pattern
 
@@ -65,3 +81,22 @@ agent-sudo-flush
 
 - Queue: `~/.cache/agent-sudo/queue.json`
 - History: `~/.cache/agent-sudo/history.json`
+
+## Configuration
+
+`~/.config/agent-sudo/theme.conf` (QSettings INI format):
+
+```ini
+[theme]
+preset=0   ; 0=BlueMiku, 1=GoldenHarvest, 2=Green
+mode=0     ; 0=Light, 1=Dark
+
+[sound]
+enabled=true
+event\open=default       ; default/none/<wav-path>
+event\warning=default
+event\executed=default
+event\rejected=none
+
+lang=zh   ; en/ja/ko/fr/de/es/pt
+```
