@@ -67,18 +67,15 @@ int execCommands(const QString& password,
         QSet<int> sids;
         for (auto sv : selectedItems) sids.insert(sv.toObject()["id"].toInt());
         QString now = nowIso();
-        QJsonArray rem;
         for (auto v : allItems) {
             auto o = v.toObject();
             if (sids.contains(o["id"].toInt())) {
                 o["status"] = "executed";
                 o["completed_at"] = now;
                 ex.append(o);
-            } else {
-                rem.append(v);
             }
         }
-        writeQueue({{"version", 1}, {"items", rem}});
+        clearQueue();
         appendHistory(ex);
         std::cout << "EXECUTED: " << ex.size() << " commands" << std::endl;
         return 0;
