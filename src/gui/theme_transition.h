@@ -2,16 +2,19 @@
 
 #include <creeper-qt/utility/animation/state/accessor.hh>
 #include <creeper-qt/utility/theme/theme.hh>
+#include <functional>
 
 /// Linear interpolation between two ColorSchemes.
 /// Satisfies creeper::transition_state_trait, usable with TransitionValue.
 class ThemeTransitionState : public creeper::NormalAccessor {
 public:
     using ValueT = creeper::ColorScheme;
+    using Callback = std::function<void(const creeper::ColorScheme&)>;
 
     ThemeTransitionState() = default;
     ThemeTransitionState(const creeper::ColorScheme& from,
                          const creeper::ColorScheme& to,
+                         Callback onFrame,
                          double durationSec = 0.3);
 
     auto update() -> bool;
@@ -23,6 +26,7 @@ public:
 private:
     creeper::ColorScheme value_{};
     creeper::ColorScheme target_{};
+    Callback onFrame_;
     double progress_ = 0.0;
     double duration_ = 0.3;
     double lastTimestamp_ = 0.0;

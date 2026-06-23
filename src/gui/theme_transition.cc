@@ -4,9 +4,11 @@
 
 ThemeTransitionState::ThemeTransitionState(const creeper::ColorScheme& from,
                                            const creeper::ColorScheme& to,
+                                           Callback onFrame,
                                            double durationSec)
     : value_(from)
     , target_(to)
+    , onFrame_(std::move(onFrame))
     , duration_(durationSec)
     , lastTimestamp_(
           std::chrono::duration<double>(
@@ -25,10 +27,12 @@ auto ThemeTransitionState::update() -> bool {
     progress_ += dt / duration_;
     if (progress_ >= 1.0) {
         value_ = target_;
-        return false; // animation complete
+        if (onFrame_) onFrame_(value_);
+        return false;
     }
     value_ = colorSchemeLerp(value_, target_, easeOut(progress_));
-    return true; // continue animating
+    if (onFrame_) onFrame_(value_);
+    return true;
 }
 
 auto ThemeTransitionState::get_value() const -> ValueT { return value_; }

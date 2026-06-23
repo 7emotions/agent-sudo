@@ -50,6 +50,11 @@ QWidget* buildCommandCards(const QJsonArray& items,
             lnpro::Spacing { 8 },
             lnpro::Item<Text> {
                 text::pro::ThemeManager { *manager },
+                wdpro::Font { QFont("sans-serif", 12, QFont::Bold) },
+                text::pro::Text { QString(">") },
+            },
+            lnpro::Item<Text> {
+                text::pro::ThemeManager { *manager },
                 wdpro::Font { QFont("sans-serif", 12) },
                 text::pro::Text { QString("#%1 — %2").arg(id).arg(reason) },
             },

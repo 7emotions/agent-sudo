@@ -53,7 +53,10 @@ static auto switchTheme(ThemeManager& mgr,
     auto newScheme = mgr.color_scheme();
     if (anim) {
         auto state = std::make_shared<ThemeTransitionState>(
-            oldScheme, newScheme);
+            oldScheme, newScheme,
+            [&mgr](const ColorScheme& s) {
+                mgr.apply_theme();
+            });
         auto running = std::make_shared<bool>(true);
         anim->push_transition_task(
             std::make_unique<creeper::TransitionTask<
@@ -449,14 +452,14 @@ int main(int argc, char* argv[]) {
                         wdpro::Bind { rejB },
                         wdpro::FixedSize { 80, 32 },
                         button::pro::Text {
-                            QString::fromUtf8("拒绝") },
+                            QString::fromUtf8("\u2715 \u62D2\u7EDD") },
                     },
                     lnpro::Item<FilledButton> {
                         filled_button::pro::ThemeManager { manager },
                         wdpro::Bind { execB },
-                        wdpro::FixedSize { 120, 36 },
+                        wdpro::FixedSize { 140, 36 },
                         button::pro::Text {
-                            QString::fromUtf8("执行 (Enter)") },
+                            QString::fromUtf8("\u2713 \u6267\u884C (Enter)") },
                     },
                 },
             },
