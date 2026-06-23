@@ -13,41 +13,15 @@ int execCommands(const QString& password,
     QProcess proc;
     proc.start("sudo", {"-k", "-S", "bash", "-c", bashScript});
     if (!proc.waitForStarted(5000)) {
-        auto pw = password;
+        QString pw = password;
         scrubPassword(pw);
         return 127;
     }
     proc.write(password.toUtf8() + "\n");
     proc.closeWriteChannel();
-
     {
         QString pw = password;
         scrubPassword(pw);
-    }
-
-    QString fullOut;
-    QStringList noise = {"[sudo]", "sudo:"};
-    while (proc.state() == QProcess::Running || proc.bytesAvailable() > 0) {
-        if (proc.waitForReadyRead(1000)) {
-            while (proc.canReadLine()) {
-                auto line = proc.readLine();
-                auto ls = QString::fromUtf8(line).trimmed();
-                bool skip = false;
-                for (auto& p : noise) {
-                    if (ls.startsWith(p)) { skip = true; break; }
-                }
-                if (!skip) {
-                    std::cout << line.toStdString();
-                    std::cout.flush();
-                }
-                fullOut += ls + "\n";
-            }
-        }
-    }
-    auto rem = proc.readAll();
-    if (!rem.isEmpty()) {
-        std::cout << rem.toStdString();
-        fullOut += QString::fromUtf8(rem);
     }
 
     if (!proc.waitForFinished(30000)) {
@@ -57,10 +31,26 @@ int execCommands(const QString& password,
         return 124;
     }
 
+    auto out = QString::fromUtf8(proc.readAllStandardOutput());
+    auto err = QString::fromUtf8(proc.readAllStandardError());
     int rc = proc.exitCode();
-    if (rc == 1 && isAuthFail(fullOut)) {
-        std::cerr << "ERROR: authentication failed (exit code " << rc << ")" << std::endl;
-        // Retry with CLI password prompt
+
+    // Print output (filter noise)
+    QStringList noise = {"[sudo]", "sudo:"};
+    for (auto& line : out.split('\n')) {
+        auto ls = line.trimmed();
+        if (ls.isEmpty()) continue;
+        bool skip = false;
+        for (auto& p : noise)
+            if (ls.startsWith(p)) { skip = true; break; }
+        if (!skip) std::cout << ls.toStdString() << std::endl;
+    }
+    if (!err.trimmed().isEmpty())
+        std::cerr << err.toStdString();
+
+    // Auth failure → retry once
+    if (rc == 1 && isAuthFail(out + "\n" + err)) {
+        std::cerr << "ERROR: authentication failed" << std::endl;
         std::cerr << "Enter sudo password (or Ctrl+C to abort): " << std::flush;
         std::string retryPw;
         std::getline(std::cin, retryPw);
@@ -70,10 +60,13 @@ int execCommands(const QString& password,
         p2.start("sudo", {"-k", "-S", "bash", "-c", bashScript});
         if (!p2.waitForStarted(5000)) { scrubPassword(rp); return 127; }
         p2.write(rp.toUtf8() + "\n");
-        p2.waitForBytesWritten(5000);
         p2.closeWriteChannel();
         scrubPassword(rp);
-        p2.waitForFinished(300000);
+        if (!p2.waitForFinished(30000)) {
+            p2.kill();
+            std::cerr << "ERROR: execution timed out" << std::endl;
+            return 124;
+        }
         rc = p2.exitCode();
         if (rc != 0) {
             std::cerr << "ERROR: commands failed with exit code " << rc << std::endl;
