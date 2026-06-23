@@ -45,13 +45,15 @@ static const char* dangerIcon(Danger d) {
 }
 
 struct HoverBorder : QObject {
-    HoverBorder(FilledCard* c, QColor normal, QColor hover)
-        : card(c), normal_(normal), hover_(hover) {}
+    HoverBorder(FilledCard* c, Switch* sw, QColor normal, QColor hover)
+        : card(c), toggleSwitch(sw), normal_(normal), hover_(hover) {}
     bool eventFilter(QObject*, QEvent* e) override {
         if (e->type() == QEvent::Enter)
             card->set_border_color(hover_);
         else if (e->type() == QEvent::Leave)
             card->set_border_color(normal_);
+        else if (e->type() == QEvent::MouseButtonPress)
+            toggleSwitch->set_checked(!toggleSwitch->checked());
         return false;
     }
     void setColors(QColor normal, QColor hover) {
@@ -60,6 +62,7 @@ struct HoverBorder : QObject {
         card->set_border_color(normal);
     }
     FilledCard* card;
+    Switch* toggleSwitch;
     QColor normal_, hover_;
 };
 
@@ -142,7 +145,7 @@ QWidget* buildCommandCards(const QJsonArray& items,
         card->set_border_width(1.5);
         card->set_border_color(scheme.outline);
         card->setAttribute(Qt::WA_Hover, true);
-        auto* hover = new HoverBorder(card, scheme.outline, scheme.primary);
+        auto* hover = new HoverBorder(card, sw, scheme.outline, scheme.primary);
         card->installEventFilter(hover);
         manager->append_handler(hover, [hover](const ThemeManager& m) {
             auto s = m.color_scheme();
