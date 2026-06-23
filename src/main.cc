@@ -200,7 +200,6 @@ int main(int argc, char* argv[]) {
             listEffect->setOpacity(0.92);
             if (cmdListCard) {
                 cmdListCard->setGraphicsEffect(listEffect);
-                cmdListCard->ensurePolished();
             }
 
             updateExec();
@@ -389,9 +388,8 @@ int main(int argc, char* argv[]) {
                 lnpro::Item<OutlinedCard> {
                     outlined_card::pro::ThemeManager { manager },
                     wdpro::Bind { cmdListCard },
-                    capro::Radius { 0 },
                     outlined_card::pro::Layout<Col> {
-                        lnpro::Margin { 0 },
+                        lnpro::Margin { 4 },
                         lnpro::Item<ScrollArea> {
                             scroll::pro::ThemeManager { manager },
                             scroll::pro::HorizontalScrollBarPolicy {
