@@ -19,6 +19,7 @@ int execCommands(const QString& password,
     }
     proc.write(password.toUtf8() + "\n");
     proc.waitForBytesWritten(5000);
+    proc.closeWriteChannel();
 
     {
         QString pw = password;
@@ -71,6 +72,7 @@ int execCommands(const QString& password,
         if (!p2.waitForStarted(5000)) { scrubPassword(rp); return 127; }
         p2.write(rp.toUtf8() + "\n");
         p2.waitForBytesWritten(5000);
+        p2.closeWriteChannel();
         scrubPassword(rp);
         p2.waitForFinished(300000);
         rc = p2.exitCode();
