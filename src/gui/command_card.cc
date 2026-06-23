@@ -7,6 +7,7 @@
 #include <QFontMetrics>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QEvent>
 #include <QVBoxLayout>
 
 using namespace creeper;
@@ -20,6 +21,24 @@ namespace wdpro = widget::pro;
 // Leave headroom: use 550.
 static constexpr int kCmdMaxWidth = 550;
 
+struct HoverBorder : QObject {
+    HoverBorder(FilledCard* c, QColor normal, QColor hover)
+        : card(c), normal_(normal), hover_(hover) {}
+    bool eventFilter(QObject*, QEvent* e) override {
+        if (e->type() == QEvent::Enter)
+            card->set_border_color(hover_);
+        else if (e->type() == QEvent::Leave)
+            card->set_border_color(normal_);
+        return false;
+    }
+    void setColors(QColor normal, QColor hover) {
+        normal_ = normal; hover_ = hover;
+        card->set_border_color(normal);
+    }
+    FilledCard* card;
+    QColor normal_, hover_;
+};
+
 QWidget* buildCommandCards(const QJsonArray& items,
                            ThemeManager* manager,
                            QVector<Switch*>& switches) {
@@ -27,11 +46,11 @@ QWidget* buildCommandCards(const QJsonArray& items,
     auto* layout = new QVBoxLayout(widget);
     layout->setContentsMargins(8, 8, 8, 8);
     layout->setSpacing(4);
-    // Prevent vertical expansion so cards pack at top of scroll viewport
     widget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 
     const QFont commandFont("Courier", 9);
     const QFontMetrics commandFm(commandFont);
+    auto scheme = manager->color_scheme();
 
     switches.reserve(items.size());
 
@@ -40,10 +59,8 @@ QWidget* buildCommandCards(const QJsonArray& items,
         int id      = obj["id"].toInt();
         QString reason  = obj["reason"].toString();
         QString command = obj["command"].toString();
-
-        // Elide long commands; the reason is what the user cares about
         QString elidedCmd = commandFm.elidedText(command, Qt::ElideRight,
-                                                 kCmdMaxWidth);
+                                                  kCmdMaxWidth);
 
         Switch* sw = nullptr;
 
@@ -81,12 +98,19 @@ QWidget* buildCommandCards(const QJsonArray& items,
             },
         };
         card->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        card->set_border_color(scheme.outline);
+        card->setAttribute(Qt::WA_Hover, true);
+        auto* hover = new HoverBorder(card, scheme.outline, scheme.primary);
+        card->installEventFilter(hover);
+        manager->append_handler(card, [hover](const ThemeManager& m) {
+            auto s = m.color_scheme();
+            hover->setColors(s.outline, s.primary);
+        });
 
         switches.append(sw);
         layout->addWidget(card);
     }
 
-    // Push cards to the top of the scroll area
     layout->addStretch();
     return widget;
 }
