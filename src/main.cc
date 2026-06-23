@@ -191,6 +191,7 @@ int main(int argc, char* argv[]) {
             pwF->setPlaceholderText(QString::fromUtf8(""));
             llmF->setMaximumHeight(0);
             llmF->setVisible(false);
+            llmF->setPlaceholderText(tr::t("输入给 Agent 的备注信息..."));
             QTimer::singleShot(0, pwF, qOverload<>(&QWidget::setFocus));
             QTimer::singleShot(100, [&] {
                 soundMgr.play(SoundManager::Event::Open);
@@ -423,7 +424,7 @@ int main(int argc, char* argv[]) {
 
                 // ── LLM text field ──
                 lnpro::Item<Row> {
-                    lnpro::Margin { 0 },
+                    lnpro::Margin { 12 },
                     lnpro::Item<OutlinedTextField> {
                         text_field::pro::ThemeManager { manager },
                         wdpro::Bind { llmF },

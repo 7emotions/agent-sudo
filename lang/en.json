@@ -13,4 +13,4 @@
     "ERROR: DISPLAY not set": "ERROR: DISPLAY not set",
     "ERROR: queue is empty": "ERROR: queue is empty",
     "Usage: agent-sudo --reason \"...\" -- <command>": "Usage: agent-sudo --reason \"...\" -- <command>"
-}
+,"输入给 Agent 的备注信息...":"Note for the Agent..."}
