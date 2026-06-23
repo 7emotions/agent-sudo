@@ -1,0 +1,16 @@
+{
+    "Agent 特权命令审批": "Agent 特権コマンド承認",
+    "共 %1 条待审批命令": "承認待ちコマンド %1 件",
+    "全选 (A)": "すべて選択 (A)",
+    "取消全选 (C)": "選択解除 (C)",
+    "拒绝 (Esc)": "拒否 (Esc)",
+    "执行 (Enter)": "実行 (Enter)",
+    "请勾选命令": "コマンドを選択",
+    "sudo 密码": "sudo パスワード",
+    "▶ 备注本次执行上下文 (LLM Prompt)": "▶ LLM プロンプト",
+    "REJECTED: timeout": "REJECTED: タイムアウト",
+    "REJECTED: user dismissed": "REJECTED: ユーザー拒否",
+    "ERROR: DISPLAY not set": "ERROR: DISPLAY 未設定",
+    "ERROR: queue is empty": "ERROR: キューが空です",
+    "Usage: agent-sudo --reason \"...\" -- <command>": "使用法: agent-sudo --reason \"...\" -- <command>"
+}

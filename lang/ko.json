@@ -1,0 +1,16 @@
+{
+    "Agent 特权命令审批": "Agent 권한 명령 승인",
+    "共 %1 条待审批命令": "승인 대기 명령 %1건",
+    "全选 (A)": "전체 선택 (A)",
+    "取消全选 (C)": "선택 해제 (C)",
+    "拒绝 (Esc)": "거부 (Esc)",
+    "执行 (Enter)": "실행 (Enter)",
+    "请勾选命令": "명령을 선택하세요",
+    "sudo 密码": "sudo 비밀번호",
+    "▶ 备注本次执行上下文 (LLM Prompt)": "▶ LLM 프롬프트",
+    "REJECTED: timeout": "REJECTED: 시간 초과",
+    "REJECTED: user dismissed": "REJECTED: 사용자 거부",
+    "ERROR: DISPLAY not set": "ERROR: DISPLAY 미설정",
+    "ERROR: queue is empty": "ERROR: 큐가 비었습니다",
+    "Usage: agent-sudo --reason \"...\" -- <command>": "사용법: agent-sudo --reason \"...\" -- <command>"
+}

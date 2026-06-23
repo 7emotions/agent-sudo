@@ -4,5 +4,11 @@
     </qresource>
     <qresource prefix="/lang">
         <file alias="en.json">lang/en.json</file>
+        <file alias="ja.json">lang/ja.json</file>
+        <file alias="ko.json">lang/ko.json</file>
+        <file alias="fr.json">lang/fr.json</file>
+        <file alias="de.json">lang/de.json</file>
+        <file alias="es.json">lang/es.json</file>
+        <file alias="pt.json">lang/pt.json</file>
     </qresource>
 </RCC>
