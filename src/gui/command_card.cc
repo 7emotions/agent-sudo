@@ -102,8 +102,12 @@ QWidget* buildCommandCards(const QJsonArray& items,
         card->set_border_width(1.5);
         card->set_border_color(scheme.outline);
         card->setAttribute(Qt::WA_Hover, true);
-        card->installEventFilter(
-            new HoverBorder(card, scheme.outline, scheme.primary));
+        auto* hover = new HoverBorder(card, scheme.outline, scheme.primary);
+        card->installEventFilter(hover);
+        manager->append_handler(hover, [hover](const ThemeManager& m) {
+            auto s = m.color_scheme();
+            hover->setColors(s.outline, s.primary);
+        });
 
         switches.append(sw);
         layout->addWidget(card);
