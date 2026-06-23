@@ -125,21 +125,30 @@ esac
 
 ## 工作原理
 
-```
-Agent                       agent-sudo                       Human
-  │                              │                              │
-  ├─ agent-sudo --reason "..." ─►│  写入 queue.json             │
-  ├─ agent-sudo --reason "..." ─►│  追加 queue.json             │
-  │                              │                              │
-  ├─ agent-sudo-flush ──────────►│  读取 queue.json             │
-  │                              ├─ 弹出 PySide2 GUI ──────────►│  查看命令
-  │  [阻塞等待]                   │                              │  勾选/取消
-  │                              │                              │  输入密码
-  │                              │◄────────── 点击执行 ─────────┤
-  │                              ├─ 执行 sudo 命令               │
-  │                              ├─ 写入 history.json           │
-  │◄─────── 退出码 ──────────────┤                              │
-  │  继续工作                     │                              │
+```mermaid
+sequenceDiagram
+    participant Agent
+    participant agent-sudo
+    participant Human
+
+    Agent->>agent-sudo: agent-sudo --reason "..."
+    Note over agent-sudo: 写入 queue.json
+    Agent->>agent-sudo: agent-sudo --reason "..."
+    Note over agent-sudo: 追加 queue.json
+
+    Agent->>agent-sudo: agent-sudo-flush
+    Note over agent-sudo: 读取 queue.json
+    agent-sudo->>Human: 弹出 PySide2 GUI
+    Note over Agent: [阻塞等待]
+
+    Note over Human: 查看命令、勾选/取消
+    Note over Human: 输入 sudo 密码
+    Human->>agent-sudo: 点击执行
+
+    Note over agent-sudo: 执行 sudo 命令
+    Note over agent-sudo: 写入 history.json
+    agent-sudo-->>Agent: 退出码
+    Note over Agent: 继续工作
 ```
 
 ## 退出码
