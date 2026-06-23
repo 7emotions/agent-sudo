@@ -4,6 +4,8 @@
 #include <QPixmap>
 #include <QString>
 
+class QLabel;
+
 /// Central icon provider for agent-sudo GUI.
 /// Stateless utility — all methods are static.
 struct IconProvider {
@@ -24,6 +26,12 @@ struct IconProvider {
 
     /// Returns the Material Icons font.
     static auto font(int size = 20) -> QFont;
+
+    /// Create a QLabel with a themed Material Icon pixmap.
+    /// The label is sized to the icon and ready for layout insertion.
+    static auto iconLabel(const QString& name,
+                          const QColor& color,
+                          int size = 20) -> QLabel*;
 
 private:
     static inline QFont iconFont_{};

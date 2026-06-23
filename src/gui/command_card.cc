@@ -1,4 +1,6 @@
 #include "command_card.h"
+#include "gui/icon.h"
+#include "gui/icon_codes.h"
 
 #include <creeper-qt/creeper-qt.hh>
 #include <QFont>
@@ -48,11 +50,9 @@ QWidget* buildCommandCards(const QJsonArray& items,
         auto* titleRow = new Row {
             lnpro::Margin { 0 },
             lnpro::Spacing { 8 },
-            lnpro::Item<Text> {
-                text::pro::ThemeManager { *manager },
-                wdpro::Font { QFont("sans-serif", 12, QFont::Bold) },
-                text::pro::Text { QString(">") },
-            },
+            lnpro::Item<QWidget> {
+                IconProvider::iconLabel(icon::kTerminal,
+                    manager->color_scheme().on_surface, 16) },
             lnpro::Item<Text> {
                 text::pro::ThemeManager { *manager },
                 wdpro::Font { QFont("sans-serif", 12) },

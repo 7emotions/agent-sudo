@@ -1,7 +1,9 @@
 #include "icon.h"
 #include <QCoreApplication>
 #include <QDir>
+#include <QFile>
 #include <QFontDatabase>
+#include <QLabel>
 #include <QPainter>
 #include <QSvgRenderer>
 
@@ -81,4 +83,14 @@ auto IconProvider::appIconSvg() -> const char* {
         font-size="7" font-weight="bold" font-family="sans-serif">sudo</text>
 </svg>
     )svg";
+}
+
+auto IconProvider::iconLabel(const QString& name,
+                             const QColor& color,
+                             int size) -> QLabel* {
+    auto* label = new QLabel;
+    label->setPixmap(themedIcon(name, color, size));
+    label->setFixedSize(size, size);
+    label->setAlignment(Qt::AlignCenter);
+    return label;
 }
