@@ -24,6 +24,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QLineEdit>
+#include <QShortcut>
 #include <QTimer>
 #include <QWidget>
 
@@ -168,6 +169,15 @@ int main(int argc, char* argv[]) {
                 window.move((g.width() - 700) / 2 + g.x(),
                             (g.height() - 550) / 2 + g.y());
             }
+
+            auto* escShortcut = new QShortcut(Qt::Key_Escape, &window);
+            QObject::connect(escShortcut, &QShortcut::activated, [&] {
+                rejB->click();
+            });
+            auto* selAllSc = new QShortcut(Qt::Key_A, &window);
+            QObject::connect(selAllSc, &QShortcut::activated, [&] { setAll(true); });
+            auto* deselAllSc = new QShortcut(Qt::Key_C, &window);
+            QObject::connect(deselAllSc, &QShortcut::activated, [&] { setAll(false); });
 
             pwF->setEchoMode(QLineEdit::Password);
             pwF->setPlaceholderText(QString::fromUtf8(""));
