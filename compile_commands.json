@@ -1,0 +1,122 @@
+[
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/creeper-qt-widgets_autogen/mocs_compilation.cpp.o -c /home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/mocs_compilation.cpp",
+  "file": "/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/layout/flow.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/layout/flow.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/layout/flow.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/layout/mixer.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/layout/mixer.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/layout/mixer.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/layout/scroll.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/layout/scroll.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/layout/scroll.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/utility/animation/animatable.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/animation/animatable.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/animation/animatable.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/utility/painter/helper.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/painter/helper.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/painter/helper.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/utility/solution/round-angle.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/solution/round-angle.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/solution/round-angle.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/utility/theme/theme.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/theme/theme.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/utility/theme/theme.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/buttons/filled-button.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/buttons/filled-button.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/buttons/filled-button.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/buttons/icon-button.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/buttons/icon-button.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/buttons/icon-button.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/dropdown-menu.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/dropdown-menu.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/dropdown-menu.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/image.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/image.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/image.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/main-window.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/main-window.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/main-window.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/sliders.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/sliders.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/sliders.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/snackbar.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/snackbar.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/snackbar.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/switch.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/switch.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/switch.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/text-fields.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/text-fields.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/text-fields.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/creeper-qt-widgets_autogen/include -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -isystem /usr/include/eigen3 -O2 -fPIC -std=gnu++23 -o CMakeFiles/creeper-qt-widgets.dir/src/gui/creeper-qt/widget/widget.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/widget.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/creeper-qt/widget/widget.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/include -I/home/ubuntu/.ws/pkagt/src -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -O2 -fPIC -std=gnu++23 -o CMakeFiles/agent-sudo-flush.dir/agent-sudo-flush_autogen/mocs_compilation.cpp.o -c /home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/mocs_compilation.cpp",
+  "file": "/home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/include -I/home/ubuntu/.ws/pkagt/src -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -O2 -fPIC -std=gnu++23 -o CMakeFiles/agent-sudo-flush.dir/src/main.cc.o -c /home/ubuntu/.ws/pkagt/src/main.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/main.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/include -I/home/ubuntu/.ws/pkagt/src -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -O2 -fPIC -std=gnu++23 -o CMakeFiles/agent-sudo-flush.dir/src/gui/command_card.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/command_card.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/command_card.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/include -I/home/ubuntu/.ws/pkagt/src -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -O2 -fPIC -std=gnu++23 -o CMakeFiles/agent-sudo-flush.dir/src/gui/ring_countdown.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/ring_countdown.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/ring_countdown.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/include -I/home/ubuntu/.ws/pkagt/src -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -O2 -fPIC -std=gnu++23 -o CMakeFiles/agent-sudo-flush.dir/src/gui/queue_io.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/queue_io.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/queue_io.cc"
+},
+{
+  "directory": "/home/ubuntu/.ws/pkagt/build",
+  "command": "/usr/bin/g++-14 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/ubuntu/.ws/pkagt/build/agent-sudo-flush_autogen/include -I/home/ubuntu/.ws/pkagt/src -I/home/ubuntu/.ws/pkagt/src/gui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtNetwork -O2 -fPIC -std=gnu++23 -o CMakeFiles/agent-sudo-flush.dir/src/gui/executor.cc.o -c /home/ubuntu/.ws/pkagt/src/gui/executor.cc",
+  "file": "/home/ubuntu/.ws/pkagt/src/gui/executor.cc"
+}
+]

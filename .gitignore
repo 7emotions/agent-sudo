@@ -21,3 +21,9 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+.vscode
+.pytest_cache/
+.cache
+.codegraph
+.superpowers

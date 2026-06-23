@@ -1,0 +1,77 @@
+
+// 本文件由 CMake 在配置阶段自动生成，请勿手动修改。
+// 新增、删除或重命名 src/creeper-qt 下的 .hh 头文件后，
+// 重新运行 cmake 即可自动更新此文件。
+
+#pragma once
+
+#include <creeper-qt/core/application.hh>
+#include <creeper-qt/layout/flow.hh>
+#include <creeper-qt/layout/form.hh>
+#include <creeper-qt/layout/grid.hh>
+#include <creeper-qt/layout/group.hh>
+#include <creeper-qt/layout/lazy.hh>
+#include <creeper-qt/layout/linear.hh>
+#include <creeper-qt/layout/mixer.hh>
+#include <creeper-qt/layout/mutual-exclusion-group.hh>
+#include <creeper-qt/layout/scroll.hh>
+#include <creeper-qt/layout/stacked.hh>
+#include <creeper-qt/utility/animation/animatable.hh>
+#include <creeper-qt/utility/animation/math.hh>
+#include <creeper-qt/utility/animation/state/accessor.hh>
+#include <creeper-qt/utility/animation/state/linear.hh>
+#include <creeper-qt/utility/animation/state/pid.hh>
+#include <creeper-qt/utility/animation/state/spring.hh>
+#include <creeper-qt/utility/animation/transition.hh>
+#include <creeper-qt/utility/animation/water-ripple.hh>
+#include <creeper-qt/utility/content-scale.hh>
+#include <creeper-qt/utility/material-icon.hh>
+#include <creeper-qt/utility/math/lattice.hh>
+#include <creeper-qt/utility/mini-bus.hh>
+#include <creeper-qt/utility/painter-resource.hh>
+#include <creeper-qt/utility/painter/common.hh>
+#include <creeper-qt/utility/painter/container.hh>
+#include <creeper-qt/utility/painter/helper.hh>
+#include <creeper-qt/utility/painter/shape.hh>
+#include <creeper-qt/utility/qt_wrapper/enter-event.hh>
+#include <creeper-qt/utility/qt_wrapper/margin-setter.hh>
+#include <creeper-qt/utility/solution/round-angle.hh>
+#include <creeper-qt/utility/theme/color-scheme.hh>
+#include <creeper-qt/utility/theme/preset/blue-miku.hh>
+#include <creeper-qt/utility/theme/preset/gloden-harvest.hh>
+#include <creeper-qt/utility/theme/preset/green.hh>
+#include <creeper-qt/utility/theme/theme.hh>
+#include <creeper-qt/utility/trait/widget.hh>
+#include <creeper-qt/utility/wrapper/common.hh>
+#include <creeper-qt/utility/wrapper/layout.hh>
+#include <creeper-qt/utility/wrapper/mutable-value.hh>
+#include <creeper-qt/utility/wrapper/mutable.hh>
+#include <creeper-qt/utility/wrapper/pimpl.hh>
+#include <creeper-qt/utility/wrapper/property.hh>
+#include <creeper-qt/utility/wrapper/singleton.hh>
+#include <creeper-qt/utility/wrapper/widget.hh>
+#include <creeper-qt/widget/buttons/button.hh>
+#include <creeper-qt/widget/buttons/filled-button.hh>
+#include <creeper-qt/widget/buttons/filled-tonal-button.hh>
+#include <creeper-qt/widget/buttons/icon-button.hh>
+#include <creeper-qt/widget/buttons/outlined-button.hh>
+#include <creeper-qt/widget/buttons/text-button.hh>
+#include <creeper-qt/widget/cards/basic-card.hh>
+#include <creeper-qt/widget/cards/elevated-card.hh>
+#include <creeper-qt/widget/cards/filled-card.hh>
+#include <creeper-qt/widget/cards/outlined-card.hh>
+#include <creeper-qt/widget/custom/widget.hh>
+#include <creeper-qt/widget/dropdown-menu.hh>
+#include <creeper-qt/widget/image.hh>
+#include <creeper-qt/widget/indicator/circular-progress-indicator.hh>
+#include <creeper-qt/widget/main-window.hh>
+#include <creeper-qt/widget/shape/ellipse.hh>
+#include <creeper-qt/widget/shape/rounded-rect.hh>
+#include <creeper-qt/widget/shape/shape.hh>
+#include <creeper-qt/widget/shape/wave-circle.hh>
+#include <creeper-qt/widget/sliders.hh>
+#include <creeper-qt/widget/snackbar.hh>
+#include <creeper-qt/widget/switch.hh>
+#include <creeper-qt/widget/text-fields.hh>
+#include <creeper-qt/widget/text.hh>
+#include <creeper-qt/widget/widget.hh>

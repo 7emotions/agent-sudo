@@ -1,0 +1,12 @@
+CompileFlags:
+  Remove:
+    - -mno-direct-extern-access
+  Add:
+    - -I/usr/include/x86_64-linux-gnu/qt6
+    - -I/usr/include/x86_64-linux-gnu/qt6/QtCore
+    - -I/usr/include/x86_64-linux-gnu/qt6/QtGui
+    - -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets
+    - -I/usr/include/x86_64-linux-gnu/qt6/QtNetwork
+    - -I/usr/include/eigen3
+    - -I/home/ubuntu/.ws/pkagt/src/gui
+    - -I/home/ubuntu/.ws/pkagt/src

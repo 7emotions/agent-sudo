@@ -67,6 +67,47 @@ static auto switchTheme(ThemeManager& mgr,
 // ══════════════════════════════════════════════════════════════════════════
 
 int main(int argc, char* argv[]) {
+    // ── CLI mode: invoked as `agent-sudo` (not `agent-sudo-flush`) ──
+    {
+        std::string prog = argv[0];
+        auto slash = prog.find_last_of('/');
+        std::string base = (slash != std::string::npos)
+                               ? prog.substr(slash + 1) : prog;
+        if (base == "agent-sudo") {
+            std::string reason;
+            std::string command;
+            bool inReason = false, inCmd = false;
+            for (int i = 1; i < argc; ++i) {
+                std::string a = argv[i];
+                if (a == "--reason") { inReason = true; inCmd = false; continue; }
+                if (a == "--") { inReason = false; inCmd = true; continue; }
+                if (inReason) { reason = a; inReason = false; }
+                else if (inCmd)
+                    command += (command.empty() ? "" : " ") + a;
+            }
+            if (reason.empty() || command.empty()) {
+                std::cerr << "Usage: agent-sudo --reason \"...\" -- <command>"
+                          << std::endl;
+                return 127;
+            }
+            auto q = readQueue();
+            auto items = q.value("items").toArray();
+            int nextId = 1;
+            for (const auto& v : items)
+                nextId = std::max(nextId,
+                                  v.toObject().value("id").toInt() + 1);
+            QJsonObject entry;
+            entry["id"]      = nextId;
+            entry["reason"]  = QString::fromStdString(reason);
+            entry["command"] = QString::fromStdString(command);
+            entry["cwd"]     = QDir::currentPath();
+            items.append(entry);
+            q["items"] = items;
+            writeQueue(q);
+            return 0;
+        }
+    }
+
     if (qEnvironmentVariableIsEmpty("DISPLAY")) {
         std::cerr << "ERROR: DISPLAY not set" << std::endl;
         return 127;
