@@ -222,7 +222,9 @@ agent-sudo/
 
 ## 致谢
 
-UI 框架基于 [creeper-qt](https://github.com/creeper5820/creeper-qt)，感谢作者 [@creeper5820](https://github.com/creeper5820) 的优秀工作。
+本项目基于 [creeper-qt](https://github.com/creeper5820/creeper-qt) 声明式 Qt6 组件库构建，`src/gui/creeper-qt/` 为 vendored 源码。
+
+感谢 [@creeper5820](https://github.com/creeper5820) 的优秀工作，遵循上游许可协议。
 
 ## 贡献
 
@@ -231,3 +233,5 @@ UI 框架基于 [creeper-qt](https://github.com/creeper5820/creeper-qt)，感谢
 ## 许可
 
 MIT License © 2026 Lorenzo Feng — 详见 [LICENSE](LICENSE)。
+
+`src/gui/creeper-qt/` 为 vendored 第三方代码，遵循其原始许可协议。
