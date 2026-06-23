@@ -27,10 +27,6 @@ struct HoverBorder : QObject {
             card->set_border_color(normal_);
         return false;
     }
-    void setColors(QColor normal, QColor hover) {
-        normal_ = normal; hover_ = hover;
-        card->set_border_color(normal);
-    }
     OutlinedCard* card;
     QColor normal_, hover_;
 };
@@ -96,12 +92,8 @@ QWidget* buildCommandCards(const QJsonArray& items,
         card->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         card->set_border_color(scheme.outline);
         card->setAttribute(Qt::WA_Hover, true);
-        auto* hover = new HoverBorder(card, scheme.outline, scheme.primary);
-        card->installEventFilter(hover);
-        manager->append_handler(card, [hover](const ThemeManager& m) {
-            auto s = m.color_scheme();
-            hover->setColors(s.outline, s.primary);
-        });
+        card->installEventFilter(
+            new HoverBorder(card, scheme.outline, scheme.primary));
 
         switches.append(sw);
         layout->addWidget(card);
