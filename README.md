@@ -3,6 +3,8 @@
 <p align="center">
   AI Agent 特权命令审批网关 — 队列化 sudo 请求，通过 GUI 窗口让人类一键审批。
   <br />
+  <a href="#为什么不用-pkexec--sudo"><strong>为什么不用 pkexec？ &raquo;</strong></a>
+  ·
   <a href="#快速开始"><strong>快速开始 &raquo;</strong></a>
   ·
   <a href="#安装"><strong>安装 &raquo;</strong></a>
@@ -25,6 +27,28 @@ AI Agent 在执行任务时经常需要 root 权限 — 装软件包、管理系
 **agent-sudo** 解决了这个问题：Agent 把需要特权的命令排进队列，然后弹出一个 GUI 窗口供人类查看、勾选、审批。一条命令都不漏，一条命令都不多。
 
 ![agent-sudo GUI](imgs/agent-sudo-gui.png)
+
+## 为什么不用 pkexec / sudo？
+
+| 方案 | 问题 |
+|---|---|
+| `sudo` 免密 | Agent 拥有不受限的 root 权限，一条 `rm -rf /` 就能毁灭系统 |
+| `pkexec` | 每条命令弹一次 PolicyKit 对话框，Agent 执行 10 条命令你就要点 10 次确认，且看不到全局上下文 |
+| `sudoers` 白名单 | 需要 root 编辑 `/etc/sudoers`，命令必须预先写死，Agent 需要的新命令不在白名单里就卡住 |
+| PolKit 规则 | 配置复杂（XML/JS），调试困难，不适合动态的 Agent 工作流 |
+
+**agent-sudo** 的区别：
+
+| 特性 | agent-sudo | pkexec | sudo NOPASSWD |
+|---|---|---|---|
+| 批量审批 | 所有命令在一个窗口 | 逐条弹窗 | — |
+| 命令理由 | 每条附带 `--reason` | 无 | 无 |
+| 选择性执行 | 可取消不需要的命令 | 只能全接受或全拒绝 |
+| 审计记录 | `history.json` 记录每次审批 | 仅 syslog | 仅 syslog |
+| 倒计时保护 | 60 秒无人操作自动拒绝 | PolicyKit 默认超时 | 无 |
+| 人类反馈 | 可留言给 Agent | 无 | 无 |
+| 配置复杂度 | 零配置，开箱即用 | 需要 DBus + PolicyKit | 需要编辑 sudoers |
+| 密码安全 | 内存中使用后立即清零 | PolicyKit agent 管理 | 缓存 5 分钟 |
 
 ## 快速开始
 
