@@ -80,6 +80,7 @@ auto IconProvider::iconLabel(const QString& name,
     pm.fill(Qt::transparent);
     QPainter p(&pm);
     p.setRenderHint(QPainter::Antialiasing);
+    p.setRenderHint(QPainter::TextAntialiasing);
     p.setPen(color);
     QFont f("Material Icons Round", size);
     f.setStyleStrategy(QFont::PreferQuality);
