@@ -162,6 +162,7 @@ int main(int argc, char* argv[]) {
     TextButton*        llmB  = nullptr;
     FilledButton*      execB = nullptr;
     OutlinedButton*    rejB  = nullptr;
+    OutlinedButton*    modeB = nullptr;
     OutlinedButton*    pauseB= nullptr;
     QVector<Switch*>   sws;
 
@@ -352,8 +353,9 @@ int main(int argc, char* argv[]) {
                     },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
+                        wdpro::Bind { modeB },
                         wdpro::Font {
-                            QFont("Material Icons", 16) },
+                            QFont("Material Icons Round", 16) },
                         button::pro::Text {
                             QString::fromUtf8(icon::kLightMode) },
                         wdpro::FixedSize { 32, 32 },
@@ -366,6 +368,10 @@ int main(int argc, char* argv[]) {
                             cfg.setValue("theme/mode",
                                 newMode == ColorMode::LIGHT ? 0 : 1);
                             cfg.sync();
+                            modeB->setText(QString::fromUtf8(
+                                newMode == ColorMode::LIGHT
+                                    ? icon::kLightMode
+                                    : icon::kDarkMode));
                             switchTheme(manager, kPresetPacks[presetIdx],
                                         newMode, anim.get());
                         }},
