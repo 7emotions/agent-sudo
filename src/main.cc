@@ -126,8 +126,8 @@ int main(int argc, char* argv[]) {
     ColorMode mode = cfg.value("theme/mode", 0).toInt() == 0
                          ? ColorMode::LIGHT : ColorMode::DARK;
 
-    IconProvider::initFont();
     app::init { app::pro::Complete { argc, argv } };
+    IconProvider::initFont();
     QApplication::setWindowIcon(IconProvider::appIcon());
 
     auto manager = ThemeManager { kPresetPacks[presetIdx], mode };
