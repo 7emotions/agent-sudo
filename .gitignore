@@ -26,4 +26,7 @@ Thumbs.db
 .pytest_cache/
 .cache
 .codegraph
-.superpowers
+.superpowers.clangd
+compile_commands.json
+build/
+docs/superpowers/
