@@ -3,7 +3,6 @@
 #include <QProcess>
 #include <QSet>
 #include <iostream>
-#include <string>
 
 int execCommands(const QString& password,
                  const QString& bashScript,
@@ -51,27 +50,7 @@ int execCommands(const QString& password,
     // Auth failure → retry once
     if (rc == 1 && isAuthFail(out + "\n" + err)) {
         std::cerr << "ERROR: authentication failed" << std::endl;
-        std::cerr << "Enter sudo password (or Ctrl+C to abort): " << std::flush;
-        std::string retryPw;
-        std::getline(std::cin, retryPw);
-        if (retryPw.empty()) return 126;
-        QString rp = QString::fromStdString(retryPw);
-        QProcess p2;
-        p2.start("sudo", {"-k", "-S", "bash", "-c", bashScript});
-        if (!p2.waitForStarted(5000)) { scrubPassword(rp); return 127; }
-        p2.write(rp.toUtf8() + "\n");
-        p2.closeWriteChannel();
-        scrubPassword(rp);
-        if (!p2.waitForFinished(30000)) {
-            p2.kill();
-            std::cerr << "ERROR: execution timed out" << std::endl;
-            return 124;
-        }
-        rc = p2.exitCode();
-        if (rc != 0) {
-            std::cerr << "ERROR: commands failed with exit code " << rc << std::endl;
-            return rc;
-        }
+        return 126;
     }
 
     if (rc == 0) {
