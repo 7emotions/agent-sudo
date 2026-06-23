@@ -198,7 +198,10 @@ int main(int argc, char* argv[]) {
 
             auto* listEffect = new QGraphicsOpacityEffect;
             listEffect->setOpacity(0.92);
-            if (cmdListCard) cmdListCard->setGraphicsEffect(listEffect);
+            if (cmdListCard) {
+                cmdListCard->setGraphicsEffect(listEffect);
+                cmdListCard->setAttribute(Qt::WA_ClipChildren, true);
+            }
 
             updateExec();
             for (auto* s : sws)
