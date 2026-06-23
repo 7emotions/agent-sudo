@@ -29,6 +29,7 @@ namespace mwpro = main_window::pro;
 namespace capro = card::pro;
 namespace lnpro = linear::pro;
 namespace wdpro = widget::pro;
+namespace ic = icon_button::pro;
 
 static const ThemePack kPresetPacks[] = {
     kBlueMikuThemePack,
@@ -132,8 +133,6 @@ int main(int argc, char* argv[]) {
     TextButton*        llmB  = nullptr;
     FilledButton*      execB = nullptr;
     OutlinedButton*    rejB  = nullptr;
-    OutlinedButton*    modeB = nullptr;
-    OutlinedButton*    pauseB= nullptr;
     QVector<Switch*>   sws;
 
     // ---- Callbacks ----
@@ -197,9 +196,6 @@ int main(int argc, char* argv[]) {
             if (llmB) manager.append_handler(llmB, [llmB](const ThemeManager& m) {
                 llmB->set_color_scheme(m.color_scheme());
             });
-            if (pauseB) manager.append_handler(pauseB, [pauseB](const ThemeManager& m) {
-                pauseB->set_color_scheme(m.color_scheme());
-            });
             if (ringW) manager.append_handler(ringW, [ringW](const ThemeManager& m) {
                 ringW->set_color_scheme(m.color_scheme());
             });
@@ -246,12 +242,6 @@ int main(int argc, char* argv[]) {
                 soundMgr.play(SoundManager::Event::Rejected);
                 clearQueue();
                 app::quit();
-            });
-
-            // Pause
-            QObject::connect(pauseB, &QAbstractButton::clicked, [&] {
-                paused = !paused;
-                pauseB->setText(paused ? "\u25B6" : "||");
             });
 
             // Enter key
@@ -304,14 +294,16 @@ int main(int argc, char* argv[]) {
                     },
                     lnpro::Stretch { 1 },
                     lnpro::Item { ringW },
-                    lnpro::Item<OutlinedButton> {
-                        outlined_button::pro::ThemeManager { manager },
-                        wdpro::Font {
-                            QFont("Material Icons Round", 16) },
-                        button::pro::Text {
-                            QString::fromUtf8(icon::kPalette) },
-                        wdpro::FixedSize { 32, 32 },
-                        button::pro::Clickable { [&] {
+                    lnpro::Item<IconButton> {
+                        ic::ThemeManager { manager },
+                        ic::ColorStandard,
+                        ic::ShapeRound,
+                        ic::TypesDefault,
+                        ic::WidthDefault,
+                        ic::Font { material::round::font_1 },
+                        ic::FixedSize { 36, 36 },
+                        ic::FontIcon { material::icon::kPalette },
+                        ic::Clickable { [&](IconButton&) {
                             presetIdx = (presetIdx + 1) % 3;
                             cfg.setValue("theme/preset", presetIdx);
                             cfg.sync();
@@ -319,34 +311,39 @@ int main(int argc, char* argv[]) {
                             manager.apply_theme();
                         }},
                     },
-                    lnpro::Item<OutlinedButton> {
-                        outlined_button::pro::ThemeManager { manager },
-                        wdpro::Bind { modeB },
-                        wdpro::Font {
-                            QFont("Material Icons Round", 16) },
-                        button::pro::Text {
-                            QString::fromUtf8(icon::kLightMode) },
-                        wdpro::FixedSize { 32, 32 },
-                        button::pro::Clickable { [&] {
+                    lnpro::Item<IconButton> {
+                        ic::ThemeManager { manager },
+                        ic::ColorStandard,
+                        ic::ShapeRound,
+                        ic::TypesDefault,
+                        ic::WidthDefault,
+                        ic::Font { material::round::font_1 },
+                        ic::FixedSize { 36, 36 },
+                        ic::FontIcon { material::icon::kDarkMode },
+                        ic::Clickable { [&](IconButton&) {
                             manager.toggle_color_mode();
+                            manager.apply_theme();
                             mode = manager.color_mode();
                             cfg.setValue("theme/mode",
                                 mode == ColorMode::LIGHT ? 0 : 1);
                             cfg.sync();
-                            modeB->setText(QString::fromUtf8(
-                                mode == ColorMode::LIGHT
-                                    ? icon::kLightMode
-                                    : icon::kDarkMode));
                         }},
                     },
-                    lnpro::Item<OutlinedButton> {
-                        outlined_button::pro::ThemeManager { manager },
-                        wdpro::Bind { pauseB },
-                        wdpro::Font {
-                            QFont("Material Icons Round", 16) },
-                        button::pro::Text {
-                            QString::fromUtf8(icon::kPause) },
-                        wdpro::FixedSize { 32, 32 },
+                    lnpro::Item<IconButton> {
+                        ic::ThemeManager { manager },
+                        ic::ColorStandard,
+                        ic::ShapeRound,
+                        ic::TypesDefault,
+                        ic::WidthDefault,
+                        ic::Font { material::round::font_1 },
+                        ic::FixedSize { 36, 36 },
+                        ic::FontIcon { material::icon::kPause },
+                        ic::Clickable { [&](IconButton& self) {
+                            paused = !paused;
+                            self.set_icon(paused
+                                ? material::icon::kPlayArrow
+                                : material::icon::kPause);
+                        }},
                     },
                 },
 
