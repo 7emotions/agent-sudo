@@ -53,7 +53,7 @@ struct HoverBorder : QObject {
         else if (e->type() == QEvent::Leave)
             card->set_border_color(normal_);
         else if (e->type() == QEvent::MouseButtonPress)
-            toggleSwitch->set_checked(!toggleSwitch->checked());
+            toggleSwitch->click();
         return false;
     }
     void setColors(QColor normal, QColor hover) {
