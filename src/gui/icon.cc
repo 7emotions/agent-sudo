@@ -35,7 +35,7 @@ auto IconProvider::themedIcon(const QString& name,
 
 auto IconProvider::appIcon() -> QPixmap {
     // Render embedded SVG to QPixmap at 64x64 (standard app icon size)
-    QSvgRenderer renderer(QByteArray(appIconSvg()));
+    QSvgRenderer renderer { QByteArray(appIconSvg()) };
     QPixmap pm(64, 64);
     pm.fill(Qt::transparent);
     QPainter p(&pm);

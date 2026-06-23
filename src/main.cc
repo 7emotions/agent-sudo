@@ -38,7 +38,7 @@ namespace wdpro = widget::pro;
 
 static const ThemePack kPresetPacks[] = {
     kBlueMikuThemePack,
-    kGlodenHarvestThemePack,
+    kGoldenHarvestThemePack,
     kGreenThemePack,
 };
 
