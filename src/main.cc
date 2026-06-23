@@ -147,7 +147,12 @@ int main(int argc, char* argv[]) {
     updateExec = [&] {
         int n = 0;
         for (auto* s : sws) if (s->checked()) ++n;
-        if (execB) execB->setEnabled(n > 0);
+        if (execB) {
+            execB->setEnabled(n > 0);
+            execB->setText(n > 0
+                ? QString::fromUtf8("\u6267\u884C (Enter)")
+                : QString::fromUtf8("\u8BF7\u52FE\u9009\u547D\u4EE4"));
+        }
     };
     std::function<void(bool)> setAll;
     setAll = [&](bool on) {
@@ -437,24 +442,24 @@ int main(int argc, char* argv[]) {
                     lnpro::Spacing { 8 },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
-                        button::pro::Text { QString::fromUtf8("全选") },
-                        wdpro::FixedSize { 60, 32 },
+                        button::pro::Text { QString::fromUtf8("全选 (A)") },
+                        wdpro::FixedSize { 80, 32 },
                         button::pro::Clickable { [&] { setAll(true); } },
                     },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         button::pro::Text {
-                            QString::fromUtf8("取消全选") },
-                        wdpro::FixedSize { 90, 32 },
+                            QString::fromUtf8("取消全选 (C)") },
+                        wdpro::FixedSize { 110, 32 },
                         button::pro::Clickable { [&] { setAll(false); } },
                     },
                     lnpro::Stretch { 1 },
                     lnpro::Item<OutlinedButton> {
                         outlined_button::pro::ThemeManager { manager },
                         wdpro::Bind { rejB },
-                        wdpro::FixedSize { 80, 32 },
+                        wdpro::FixedSize { 100, 32 },
                         button::pro::Text {
-                            QString::fromUtf8("\u62D2\u7EDD") },
+                            QString::fromUtf8("\u62D2\u7EDD (Esc)") },
                     },
                     lnpro::Item<FilledButton> {
                         filled_button::pro::ThemeManager { manager },
