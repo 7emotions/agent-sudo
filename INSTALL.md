@@ -7,7 +7,7 @@
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/7emotions/pkagt.git ~/pkagt
+git clone https://github.com/7emotions/agent-sudo.git ~/agent-sudo
 ```
 
 ### 2. 安装依赖
@@ -25,8 +25,8 @@ sudo apt install -y python3-pyside2.qtwidgets
 ### 3. 创建符号链接
 
 ```bash
-sudo ln -sf ~/pkagt/main.py /usr/local/bin/agent-sudo
-sudo ln -sf ~/pkagt/main.py /usr/local/bin/agent-sudo-flush
+sudo ln -sf ~/agent-sudo/src/main.py /usr/local/bin/agent-sudo
+sudo ln -sf ~/agent-sudo/src/main.py /usr/local/bin/agent-sudo-flush
 ```
 
 ### 4. 验证
@@ -60,5 +60,5 @@ GUI 窗口出现、点击执行后 `echo "pkagt installed OK"` 正常输出 → 
 
 ```bash
 sudo rm /usr/local/bin/agent-sudo /usr/local/bin/agent-sudo-flush
-rm -rf ~/pkagt
+rm -rf ~/agent-sudo
 ```
