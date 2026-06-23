@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
     TextButton*        llmB  = nullptr;
     FilledButton*      execB = nullptr;
     OutlinedCard*   cmdListCard = nullptr;
-    OutlinedButton*    rejB  = nullptr;
+    OutlinedButton* rejB  = nullptr;
     QVector<Switch*>   sws;
 
     // ---- Callbacks ----
@@ -200,8 +200,10 @@ int main(int argc, char* argv[]) {
             listEffect->setOpacity(0.92);
             if (cmdListCard) {
                 cmdListCard->setGraphicsEffect(listEffect);
-                cmdListCard->setAttribute(Qt::WA_ClipChildren, true);
+                cmdListCard->ensurePolished();
             }
+            if (cmdScroll) cmdScroll->setAttribute(
+                Qt::WA_StyledBackground, false);
 
             updateExec();
             for (auto* s : sws)
@@ -393,6 +395,8 @@ int main(int argc, char* argv[]) {
                         lnpro::Margin { 0 },
                         lnpro::Item<ScrollArea> {
                             scroll::pro::ThemeManager { manager },
+                            scroll::pro::HorizontalScrollBarPolicy {
+                                Qt::ScrollBarAlwaysOff },
                             scroll::pro::Item<QWidget> { cmdWidget },
                         },
                     },
