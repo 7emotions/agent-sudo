@@ -1,5 +1,6 @@
 #include "executor.h"
 #include "queue_io.h"
+#include <QJsonDocument>
 #include <QProcess>
 #include <QSet>
 #include <iostream>
@@ -81,6 +82,27 @@ int execCommands(const QString& password,
         return 0;
     }
 
-    std::cerr << "ERROR: commands failed with exit code " << rc << std::endl;
+    // Build structured error info for LLM consumption
+    QJsonArray failedItems;
+    QSet<int> sids;
+    for (auto sv : selectedItems) sids.insert(sv.toObject()["id"].toInt());
+    for (auto v : allItems) {
+        auto o = v.toObject();
+        if (sids.contains(o["id"].toInt())) {
+            o["status"] = "failed";
+            o["exit_code"] = rc;
+            failedItems.append(o);
+        }
+    }
+    QJsonObject errInfo;
+    errInfo["failed"] = failedItems;
+    errInfo["queue_cleared"] = true;
+    errInfo["error"] = "commands failed with exit code " + QString::number(rc);
+    std::cout << "AGENT_SUDO_ERROR: "
+              << QString(QJsonDocument(errInfo).toJson(QJsonDocument::Compact))
+                     .toStdString()
+              << std::endl;
+
+    clearQueue();
     return rc;
 }

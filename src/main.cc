@@ -85,6 +85,18 @@ int main(int argc, char* argv[]) {
             items.append(entry);
             q["items"] = items;
             writeQueue(q);
+            {
+                auto q2 = readQueue();
+                auto its = q2.value("items").toArray();
+                std::cout << "QUEUED: " << its.size()
+                          << " command(s) pending" << std::endl;
+                for (const auto& v : its) {
+                    auto o = v.toObject();
+                    std::cout << "  [" << o["id"].toInt() << "] "
+                              << o["reason"].toString().toStdString()
+                              << std::endl;
+                }
+            }
             return 0;
         }
     }
@@ -258,8 +270,10 @@ int main(int argc, char* argv[]) {
                     sl << QString("echo '=== [%1] %2 ==='")
                               .arg(o["id"].toInt())
                               .arg(o["reason"].toString());
-                    sl << QString("cd '%1' && %2")
-                              .arg(cwd, o["command"].toString());
+                    QString cmd = o["command"].toString();
+                    cmd.replace('\'', "'\\''");
+                    sl << QString("cd '%1' && eval '%2'")
+                              .arg(cwd, cmd);
                 }
                 bashScr = sl.join('\n');
                 window.hide();
@@ -499,13 +513,19 @@ int main(int argc, char* argv[]) {
 
     // ---- Post-GUI: execute approved commands ----
     if (exitCode == 0 && !bashScr.isEmpty()) {
-        return execCommands(sudoPw, bashScr, selItems, allItems);
+        int rc = execCommands(sudoPw, bashScr, selItems, allItems);
+        std::cout << "RESULT: " << (rc == 0 ? "executed" : "failed")
+                  << std::endl;
+        return rc;
     }
 
     if (!done) { clearQueue(); exitCode = 126; }
-    if (exitCode == 126)
+    if (exitCode == 126) {
+        std::cout << "RESULT: " << (timeout ? "timeout" : "rejected")
+                  << std::endl;
         std::cout << (timeout
             ? tr::t("REJECTED: timeout").toStdString()
             : tr::t("REJECTED: user dismissed").toStdString()) << std::endl;
+    }
     return exitCode;
 }
