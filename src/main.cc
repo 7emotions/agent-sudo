@@ -63,8 +63,17 @@ int main(int argc, char* argv[]) {
                 if (a == "--reason") { inReason = true; inCmd = false; continue; }
                 if (a == "--") { inReason = false; inCmd = true; continue; }
                 if (inReason) { reason = a; inReason = false; }
-                else if (inCmd)
-                    command += (command.empty() ? "" : " ") + a;
+                else if (inCmd) {
+                    // Shell-safe quoting: escape ' → '\'' then wrap in '...'
+                    std::string escaped = a;
+                    size_t pos = 0;
+                    while ((pos = escaped.find('\'', pos)) != std::string::npos) {
+                        escaped.replace(pos, 1, "'\\''");
+                        pos += 4;
+                    }
+                    if (!command.empty()) command += ' ';
+                    command += '\'' + escaped + '\'';
+                }
             }
             if (reason.empty() || command.empty()) {
                 std::cerr << "Usage: agent-sudo --reason \"...\" -- <command>"
@@ -271,8 +280,7 @@ int main(int argc, char* argv[]) {
                               .arg(o["id"].toInt())
                               .arg(o["reason"].toString());
                     QString cmd = o["command"].toString();
-                    cmd.replace('\'', "'\\''");
-                    sl << QString("cd '%1' && eval '%2'")
+                    sl << QString("cd '%1' && eval \"$(cat <<'__AGENT_SUDO_EOF__'\n%2\n__AGENT_SUDO_EOF__\n)\"")
                               .arg(cwd, cmd);
                 }
                 bashScr = sl.join('\n');

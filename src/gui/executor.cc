@@ -24,37 +24,28 @@ int execCommands(const QString& password,
         scrubPassword(pw);
     }
 
-    if (!proc.waitForFinished(30000)) {
-        proc.kill();
-        proc.waitForFinished(5000);
-        std::cerr << "ERROR: execution timed out" << std::endl;
-        return 124;
-    }
-
-    auto out = QString::fromUtf8(proc.readAllStandardOutput());
-    auto err = QString::fromUtf8(proc.readAllStandardError());
-    int rc = proc.exitCode();
-
-    // Print output (filter noise)
-    QStringList noise = {"[sudo]", "sudo:"};
-    for (auto& line : out.split('\n')) {
-        auto ls = line.trimmed();
-        if (ls.isEmpty()) continue;
-        bool skip = false;
-        for (auto& p : noise)
-            if (ls.startsWith(p)) { skip = true; break; }
-        if (!skip) std::cout << ls.toStdString() << std::endl;
-    }
-    if (!err.trimmed().isEmpty()) {
-        for (auto& line : err.split('\n')) {
-            auto ls = line.trimmed();
-            if (ls.isEmpty()) continue;
-            bool skip = false;
-            for (auto& p : noise)
-                if (ls.startsWith(p)) { skip = true; break; }
-            if (!skip) std::cerr << ls.toStdString() << std::endl;
+    // Poll and stream output in real time.
+    // The human approved these commands — no timeout, just wait.
+    QByteArray allOut, allErr;
+    while (!proc.waitForFinished(100)) {
+        QByteArray chunk = proc.readAllStandardOutput();
+        if (!chunk.isEmpty()) {
+            std::cout << chunk.toStdString() << std::flush;
+            allOut.append(chunk);
+        }
+        chunk = proc.readAllStandardError();
+        if (!chunk.isEmpty()) {
+            std::cerr << chunk.toStdString() << std::flush;
+            allErr.append(chunk);
         }
     }
+    // Drain any remaining output after process exits.
+    allOut.append(proc.readAllStandardOutput());
+    allErr.append(proc.readAllStandardError());
+
+    int rc = proc.exitCode();
+    QString out = QString::fromUtf8(allOut);
+    QString err = QString::fromUtf8(allErr);
 
     // Auth failure → retry once
     if (rc == 1 && isAuthFail(out + "\n" + err)) {
