@@ -269,7 +269,6 @@ int main(int argc, char* argv[]) {
                     std::cout << "LLM_PROMPT: "
                               << prompt.toStdString() << std::endl;
                 QStringList sl;
-                sl << "set -e";
                 for (int i = 0; i < items.size(); ++i) {
                     if (!sws[i]->checked()) continue;
                     auto o = items[i].toObject();
@@ -284,6 +283,9 @@ int main(int argc, char* argv[]) {
                               .arg(cwd, cmd);
                 }
                 bashScr = sl.join('\n');
+                // Ensure commands run non-interactively — sudo strips env,
+                // and closed stdin may confuse debconf/dpkg/apt frontends
+                bashScr.prepend("set -e\nexport DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n");
                 window.hide();
                 app::quit();
             });

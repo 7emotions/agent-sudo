@@ -18,6 +18,7 @@ int execCommands(const QString& password,
         return 127;
     }
     proc.write(password.toUtf8() + "\n");
+    proc.waitForBytesWritten(5000);  // ensure password is delivered before closing
     proc.closeWriteChannel();
     {
         QString pw = password;
@@ -89,6 +90,10 @@ int execCommands(const QString& password,
     errInfo["failed"] = failedItems;
     errInfo["queue_cleared"] = true;
     errInfo["error"] = "commands failed with exit code " + QString::number(rc);
+    if (!out.trimmed().isEmpty())
+        errInfo["stdout"] = out.trimmed();
+    if (!err.trimmed().isEmpty())
+        errInfo["stderr"] = err.trimmed();
     std::cout << "AGENT_SUDO_ERROR: "
               << QString(QJsonDocument(errInfo).toJson(QJsonDocument::Compact))
                      .toStdString()
